@@ -1,10 +1,22 @@
 <?php
 
+#COST OF "API POINTS" OF RUNNING THIS FILE IS $number_of_queries + 1 to factor for getting recipe result list
+
+######################## CONNECT TO MYSQL DATABASE ########################
+$host="127.0.0.1";
+$port=3306;
+$socket="";
+$user="root";
+$password="";
+$dbname="peas";
+	
+$db = new mysqli($host, $user, $password, $dbname, $port, $socket)
+or die ('Could not connect to the database server' . mysqli_connect_error());
 ######################## CONNECT SEARCH BUTTON TO USER_INPUT ########################
 
 session_start();
 /*Right now this is just a constant variable but we will connect this to a submit button*/
-$user_input = "spicy";
+$user_input = "chicken";
 
 ######################## CONSTRUCT API HTTP REQUEST #################################
 
@@ -18,6 +30,8 @@ $baseURL .= $bool_instructions;
 $baseURL .= $user_input;
 
 ######################## GET RECIPE BY HTTP REQUEST #################################
+
+#Using a test JSON file for now
 
 $curl = curl_init();
 
@@ -37,8 +51,8 @@ curl_setopt_array($curl, array(
 ));
 
 $response = curl_exec($curl);
-echo $response;
-echo "<br><br>";
+#echo $response;
+#echo "<br><br>";
 $err = curl_error($curl);
 
 curl_close($curl);
@@ -47,8 +61,11 @@ if ($err) {
 	echo "cURL Error #:" . $err;
 } 
 
-######################## STORE RECIPE IN PHP ARRAY ##################################
+#$json_array = json_decode($response, true);
+#$json_string = file_get_contents('recipe_results.json');
 $json_array = json_decode($response, true);
+######################## STORE RECIPE IN PHP ARRAY ##################################
+
 
 for ($x = 0; $x <= sizeof($json_array['results'])-1; $x++)
 $recipes[$x] = $json_array['results'][$x]['id'];
@@ -56,8 +73,6 @@ $recipes[$x] = $json_array['results'][$x]['id'];
 
 ######################## ITERATE OVER RECIPE RESULTS ################################
 for($i = 0; $i <= sizeof($recipes)-1; $i++){
-
-#foreach($recipes as $key=> $value){
 
 ######################## CONSTRUCT API HTTP REQUEST #################################
 	$baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/";
@@ -68,6 +83,9 @@ for($i = 0; $i <= sizeof($recipes)-1; $i++){
 	$baseURL .= $get_recipe_information;
 
 ######################## GET RECIPE INFORMATION BY HTTP REQUEST #####################
+
+#Using test JSON file for now
+
 	$curl = curl_init();
 
 	curl_setopt_array($curl, array(
@@ -86,40 +104,46 @@ for($i = 0; $i <= sizeof($recipes)-1; $i++){
 	));
 
 	$response = curl_exec($curl);
-	echo $response;
-	echo "<br><br>";
+	#echo $response;
+	#echo "<br><br>";
 	$err = curl_error($curl);
 	curl_close($curl);
 
 	if ($err) {
 		echo "cURL Error #:" . $err;
 	} 
-######################## DECCODE AND EXTRACT FROM JSON ARRAY ########################	
+
 	$json_array = json_decode($response, true);
+
+######################## DECCODE AND EXTRACT FROM JSON ARRAY ########################	
+
+	#Your variables will be constant if you are using a test JSON file
+	#$json_string = file_get_contents('recipe_information.json');
+	#$json_array = json_decode($json_string, true);
 	
 	$recipe_id = $json_array['id'];
-	echo $recipe_id;
-	echo "<br><br>";
+	#echo $recipe_id;
+	#echo "<br><br>";
 	
 	$recipe_name = $json_array['title'];
-	echo $recipe_name;
-	echo "<br><br>";
+	#echo $recipe_name;
+	#echo "<br><br>";
 	
-	$recipe_likes = 0;
-	echo $recipe_likes;
-	echo "<br><br>";
+	$recipe_likes = $json_array['aggregateLikes'];
+	#echo $recipe_likes;
+	#echo "<br><br>";
 	
 	$readyInMinutes = $json_array['readyInMinutes'];
-	echo $readyInMinutes;
-	echo "<br><br>";
+	#echo $readyInMinutes;
+	#echo "<br><br>";
 	
 	$recipe_image = $json_array['image'];
-	echo $recipe_image;
-	echo "<br><br>";
+	#echo $recipe_image;
+	#echo "<br><br>";
 	
 	$recipe_instruct = $json_array['instructions'];
-	echo $recipe_instruct;
-	echo "<br><br>";
+	#echo $recipe_instruct;
+	#echo "<br><br>";
 	
 	$recipe_ingredients_ids = [];
 	$recipe_ingredients_names = [];
@@ -129,33 +153,25 @@ for($i = 0; $i <= sizeof($recipes)-1; $i++){
 		$recipe_ingredients_names[$x] = $json_array['extendedIngredients'][$x]['name'];
 		$recipe_ingredients_amount[$x] = $json_array['extendedIngredients'][$x]['originalString'];
 	}
-	
+
 	
 	for ($x = 0; $x <= sizeof($json_array['extendedIngredients'])-1; $x++) {
-		echo $recipe_ingredients_ids[$x];
-		echo "<br><br>";
-		echo $recipe_ingredients_names[$x];
-		echo "<br><br>";
-		echo $recipe_ingredients_amount[$x];
-		echo "<br><br>";
-	
-######################## CONNECT TO MYSQL ########################
-	$host="127.0.0.1";
-	$port=3306;
-	$socket="";
-	$user="root";
-	$password="";
-	$dbname="peas";
-	
-	$db = new mysqli($host, $user, $password, $dbname, $port, $socket)
-	or die ('Could not connect to the database server' . mysqli_connect_error());
-	
+		#echo $recipe_ingredients_ids[$x];
+		#echo "<br><br>";
+		#echo $recipe_ingredients_names[$x];
+		#echo "<br><br>";
+		#echo $recipe_ingredients_amount[$x];
+		#echo "<br><br>";
+	}
 ######################## UPDATE RECIPE ############################	
 	$sql = "INSERT INTO Recipe(recipe_id, recipe_name, readyInMinutes, recipe_image, recipe_instructions)
 		VALUES
-			('$recipes[$i]', '$recipe_name', '$readyInMinutes', '$recipe_image', '$recipe_instruct')";
+			('$recipe_id', '$recipe_name', '$readyInMinutes', '$recipe_image', '$recipe_instruct')";
 	
 	mysqli_query($db, $sql);
+	#This recipe echo is an assumption it does not check with database yet
+	echo "Recipe Inserted";
+	echo "<br><br>";
 	
 ######################## UPDATE INGREDIENT ########################
 	for ($x = 0; $x <= sizeof($json_array['extendedIngredients'])-1; $x++) {
@@ -169,19 +185,10 @@ for($i = 0; $i <= sizeof($recipes)-1; $i++){
 	for ($x = 0; $x <= sizeof($json_array['extendedIngredients'])-1; $x++) {
 		$sql = "INSERT INTO Recipe_Ingredients(recipe_id, ingredient_id, ingredient_amt)
 			VALUES 
-				('$recipes[$i]','$recipe_ingredients_ids[$x]','$recipe_ingredients_amount[$x]')";
+				('$recipe_id','$recipe_ingredients_ids[$x]','$recipe_ingredients_amount[$x]')";
 		mysqli_query($db, $sql);		
 	}
-	
-	$db->close();
-
-	}
-sleep(1);
+	sleep(1);
 }
-
-
-
-
-
-
-
+$db->close();
+?>

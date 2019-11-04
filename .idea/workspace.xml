@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af2f235d-4fb7-41a4-b3d4-eaad47854733" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/main.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +31,7 @@
   </component>
   <component name="ProjectId" id="1Swgj0TpvEIwsKBpIjJdhMzvhJd" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -62,7 +63,9 @@
       <option name="presentableId" value="Default" />
       <updated>1572480203700</updated>
       <workItem from="1572480205856" duration="808000" />
-      <workItem from="1572481090902" duration="600000" />
+      <workItem from="1572481090902" duration="787000" />
+      <workItem from="1572561507503" duration="1495000" />
+      <workItem from="1572632896241" duration="208000" />
     </task>
     <task id="LOCAL-00001" summary="Home page file">
       <created>1572480299455</created>
@@ -83,6 +86,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.php" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

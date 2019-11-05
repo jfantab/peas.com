@@ -1,0 +1,30 @@
+Results variable location in MySQL Database		
+
+Listed view:
+	Name			- Done -> Recipe.recipe_id
+	Icon			- Done -> Recipe.recipe_image
+	readyInMinutes		- Done -> Recipe.readyInMinutes
+	Likes			- Done -> Recipe.recipe_likes
+	# of comments		- Done -> select count(comment_id)
+					  from Comment
+					  where recipe_id = '######';
+
+Expanded view:
+	Name			- Done -> Recipe.recipe_id
+	Larger picture		- Done -> Recipe.recipe_image
+	ReadyInMinutes		- Done -> Recipe.readyInMinutes
+	Likes			- Done -> Recipe.recipe_likes
+	Ingredients		- Done -> select ingredient_name
+				          from recipe_ingredients
+					  where recipe_id = '######';
+	Instructions		- Done -> Recipe.recipe_instructions
+	Comments		- Done -> select (whatever attributes)
+					  from Comment
+					  where recipe_id = '######';				
+		-Likes		- Done -> select comment_likes, timestamp, username
+		-Timestamp 	 	  from Comment, User
+		-username		  where recipe_id = '######' and
+					  User.user_id = Comment.user_id and
+					  username = 'PULL IN FROM WHO IS LOGGED IN';
+
+

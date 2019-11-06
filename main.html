@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="bootstrap.css" rel="stylesheet">
+    <link >
     <title>Home</title>
 </head>
 <body>
@@ -12,31 +13,38 @@
                 <a href="#"><h2>Peas.com</h2></a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a><h3>My Ingredients</h3></a></li>
                 <li><a><h3>User</h3></a></li>
+                <li><a><h3>Login/ Register</h3></a></li>
             </ul>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-4">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4 text-center">
+                <h1>Welcome, John!</h1>
+                <h2>What would you like to cook today?</h2>
+            </div>
+            <div class="col-sm-4"></div>
         </div>
-        <div class="col-sm-4 text-center">
-            <h1>Welcome, John!</h1>
-            <h2>What would you like to cook today?</h2>
+        <div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <form name="searchBar">
+                    <div class="form-group">
+                        <input name="ingredients" class="form-control" type="text" placeholder="Search for recipes by ingredients" value="">
+                    </div>
+                </form>
+                <form name="searchBar">
+                    <div class="form-group">
+                        <input name="recipe" class="form-control" type="text" placeholder="Search for recipes" value="">
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-4"></div>
         </div>
-        <div class="col-sm-4"></div>
     </div>
-    <div>
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
-            <form name="searchBar">
-                <input name="normal" type="text" placeholder="Search for recipes by ingredients" value="">
-            </form>
-            <form name="searchBar">
-                <input name="normal" type="text" placeholder="Search for recipes" value="">
-            </form>
-        </div>
-        <div class="col-sm-4"></div>
-    </div>
+
 </body>
 </html>

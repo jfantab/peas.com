@@ -2,23 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="bootstrap.css" rel="stylesheet">
     <title>Home</title>
 </head>
 <body>
-    <div>
-
+    <div class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#"><h2>Peas.com</h2></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a><h3>My Ingredients</h3></a></li>
+                <li><a><h3>User</h3></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4 text-center">
+            <h1>Welcome, John!</h1>
+            <h2>What would you like to cook today?</h2>
+        </div>
+        <div class="col-sm-4"></div>
     </div>
     <div>
-        <p>Welcome, John!</p>
-
-    </div>
-    <div>
-        <form name="searchBar">
-            <input name="normal" type="text" placeholder="Search for recipes by ingredients" value="">
-        </form>
-        <form name="searchBar">
-            <input name="normal" type="text" placeholder="Search for recipes" value="">
-        </form>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <form name="searchBar">
+                <input name="normal" type="text" placeholder="Search for recipes by ingredients" value="">
+            </form>
+            <form name="searchBar">
+                <input name="normal" type="text" placeholder="Search for recipes" value="">
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
     </div>
 </body>
 </html>

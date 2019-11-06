@@ -1,10 +1,10 @@
 .formSearch {
-    margin-top: 30%;
+    margin-top: 20%;
     margin-bottom: 30%;
 }
 
 .main {
-
+    height: 500px;
 }
 
 .welcome {
@@ -16,5 +16,5 @@
 }
 #logo {
     text-decoration: none;
-    color: black;
+    color: gray;
 }

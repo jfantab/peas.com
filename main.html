@@ -13,8 +13,8 @@
                 <a href="#" id="logo"><h3>Peas.com</h3></a>
             </div>
             <ul class="nav navbar-nav" id="links">
-                <li><a><h4>User</h4></a></li>
-                <li><a><h4>Login/ Register</h4></a></li>
+                <li><a href="#"><h4>User</h4></a></li>
+                <li><a href=""><h4>Login/ Register</h4></a></li>
             </ul>
         </div>
     </div>
@@ -32,13 +32,19 @@
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
                 <form name="searchBar" class="formSearch">
-                    <div class="form-group">
-                        <input name="ingredients" class="form-control" type="text" placeholder="Search for recipes by ingredients" value="">
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="Search for recipes by ingredients" value="" id="ingredients">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary">Submit</button>
+                        </span>
                     </div>
                 </form>
                 <form name="searchBar" class="formSearch">
-                    <div class="form-group">
-                        <input name="recipe" class="form-control" type="text" placeholder="Search for recipes" value="">
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="Search for recipes" value="" id="recipes">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary">Submit</button>
+                        </span>
                     </div>
                 </form>
             </div>

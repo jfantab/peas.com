@@ -12,6 +12,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="peas.com" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -72,7 +75,9 @@
       <workItem from="1572996655076" duration="6001000" />
       <workItem from="1573004767771" duration="185000" />
       <workItem from="1573067361509" duration="1259000" />
-      <workItem from="1573073675015" duration="360000" />
+      <workItem from="1573073675015" duration="555000" />
+      <workItem from="1573076187224" duration="260000" />
+      <workItem from="1573078820965" duration="1144000" />
     </task>
     <task id="LOCAL-00001" summary="Home page file">
       <created>1572480299455</created>

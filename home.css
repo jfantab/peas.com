@@ -1,6 +1,14 @@
+* {
+    font-family: sans-serif;
+}
+
 .formSearch {
     margin-top: 20%;
     margin-bottom: 20%;
+}
+
+.headings {
+    color: white;
 }
 
 .main {
@@ -9,7 +17,9 @@
 
 .welcome {
     margin-top: -2%;
-    height: 650px;
+    height: 800px;
+    background-image: url("background1.jpg");
+    background-size: cover;
 }
 
 #links {

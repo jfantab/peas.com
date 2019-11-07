@@ -1,14 +1,15 @@
 .formSearch {
     margin-top: 20%;
-    margin-bottom: 30%;
+    margin-bottom: 20%;
 }
 
 .main {
-    height: 500px;
+
 }
 
 .welcome {
-
+    margin-top: -2%;
+    height: 650px;
 }
 
 #links {

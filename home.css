@@ -1,0 +1,21 @@
+.formSearch {
+    margin-top: 20%;
+    margin-bottom: 20%;
+}
+
+.main {
+
+}
+
+.welcome {
+    margin-top: -2%;
+    height: 650px;
+}
+
+#links {
+    float: right;
+}
+#logo {
+    text-decoration: none;
+    color: gray;
+}

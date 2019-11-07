@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="af2f235d-4fb7-41a4-b3d4-eaad47854733" name="Default Changelist" comment="Testing">
+    <list default="true" id="af2f235d-4fb7-41a4-b3d4-eaad47854733" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/main.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,12 +79,7 @@
       <workItem from="1573076187224" duration="260000" />
       <workItem from="1573078820965" duration="1415000" />
       <workItem from="1573087530399" duration="250000" />
-<<<<<<< HEAD
       <workItem from="1573087874775" duration="1572000" />
-=======
-      <workItem from="1573087874775" duration="1013000" />
-      <workItem from="1573101864144" duration="961000" />
->>>>>>> aea67c1eddfb9c5106c70c7c86cc866ee8af71aa
     </task>
     <task id="LOCAL-00001" summary="Home page file">
       <created>1572480299455</created>

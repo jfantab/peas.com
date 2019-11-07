@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Profile</title>
+  <meta charset="utf-8">
+  <meta charset="UTF-8">
+    <link href="bootstrap.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link href="user.css" rel="stylesheet">
+
+</head>
+
+
+
+<body>
+    <div class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="main.html" id="logo"><h3>Peas.com</h3></a>
+            </div>
+            <ul class="nav navbar-nav" id="links">
+                <li><a href="#"><h4>User</h4></a></li>
+                <li><a href=""><h4>Login/ Register</h4></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row jumbotron jumbotron-fluid welcome">
+        <div class="container">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 text-center">
+                <h1>John Doe!</h1>
+                <hr class="hidden-sm hidden-md hidden-lg">
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2 text-center">
+                <h2>My Pantry</h2>
+            </div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <h2>My Recipes</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Ingredient">
+                <ul class="ingredients">
+                  <li>Apple<button id="delete" type="button" style="float:right">x</button></li>
+                  <li>Steak<button id="delete" type="button" style="float:right">x</button></li>
+
+                  <li>Grapes<button id="delete" type="button" style="float:right">x</button></li>
+                  <li>Chicken<button id="delete" type="button" style="float:right">x</button></li>
+
+                  <li>Salt<button id="delete" type="button" style="float:right">x</button></li>
+                  <li>Ham<button id="delete" type="button" style="float:right">x</button></li>
+                </ul>
+            </div>
+            <div class="col-sm-7">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Recipe">
+                <ul class="recipes">
+                    <div class="imagebox">
+                        <img src="chicken.jpg" style="float:left" />
+                    </div>
+                        <li>Fry Fry Chicky Chick<button id="delete" type="button" style="float:right">x</button></li>
+                </ul>
+            <div class="col-sm-1">
+        </div>
+    </div>
+
+
+
+
+
+
+</body>
+</html>

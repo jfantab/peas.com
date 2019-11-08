@@ -2,8 +2,22 @@
     font-family: sans-serif;
 }
 
+a.btn {
+    border-radius: .25rem;
+    border: 1px solid transparent;
+    padding: .5rem 1rem;
+    color: black;
+}
+
+a.btn:hover {
+    border-radius: .25rem;
+}
+
+.btn {
+}
+
 .formSearch {
-    margin: 10% 30%;
+    margin: 15% 30%;
 }
 
 .headings {
@@ -11,7 +25,7 @@
 }
 
 .welcome {
-    height: 800px;
+    height: 850px;
     background-image: url("background1.jpg");
     background-size: cover;
 }

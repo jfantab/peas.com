@@ -1,0 +1,20 @@
+
+body{
+
+  background-size: cover;
+  background-position: center;
+}
+
+.login-box{
+  max-width: 700px;
+  float: none;
+  margin: 150px auto;
+}
+.login-left{
+  background-color: green;
+   padding: 30px;
+}
+.login-right{
+  background-color: gray;
+  padding: 30px;
+}

@@ -5,28 +5,50 @@
     <link href="bootstrap.css" rel="stylesheet">
     <link href="home.css" rel="stylesheet">
     <title>Search Results</title>
-</head></head>
+</head>
 <body>
-<div class="navbar navbar-expand-sm">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="main.html" id="logo"><h3>Peas.com</h3></a>
-        <ul class="navbar-nav" id="links">
-            <li class="nav-item item">
-                <a href="" class="text-dark btn"><h3>User</h3></a>
-            </li>
-            <li class="nav-item item">
-                <a href="" class="text-dark btn"><h3>Login/Register</h3></a>
-            </li>
-        </ul>
-    </div>
-</div>
-    <div class="row jumbotron jumbotron-fluid welcome">
+    <div class="navbar navbar-expand-sm">
         <div class="container-fluid">
+            <a class="navbar-brand" href="main.html" id="logo"><h3>Peas.com</h3></a>
+            <ul class="navbar-nav" id="links">
+                <li class="nav-item item">
+                    <a href="user.html" class="text-dark btn"><h3>User</h3></a>
+                </li>
+                <li class="nav-item item">
+                    <a href="" class="text-dark btn"><h3>Login/Register</h3></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row jumbotron jumbotron-fluid welcome">
+        <div class="container-fluid main">
             <div class="col"></div>
             <div class="col text-center">
-                <h1>Here's what we found...</h1>
+                <h1 class="display-2">Here's what we found:</h1>
             </div>
             <div class="col"></div>
+            <div class="panel list-group" id="results-list">
+                <a href="#recipeOne" class="list-group-item list-group-item-action" data-toggle="collapse" data-parent="#results-list">
+                    <h4 class="list-group-item-heading">Recipe 1</h4>
+                    <p class="list-group-item-text">Cook time: X</p>
+                </a>
+                <div class="collapse" id="recipeOne">
+                    <div class="panel-body">
+                        Ingredients: Item 1, Item 2, Item 3, Item 4
+                        1) In a bowl, mix together Item 1 and Item 4
+                        2) Preheat oven to 420 degrees F
+                        3) In a large mixing bowl, beat Item 3 until creamy
+                    </div>
+                </div>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h4 class="list-group-item-heading">Recipe 2</h4>
+                    <p class="list-group-item-text">Cook time: Y</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <h4 class="list-group-item-heading">Recipe 3</h4>
+                    <p class="list-group-item-text">Cook time: Z</p>
+                </a>
+            </div>
         </div>
     </div>
 </body>

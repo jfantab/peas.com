@@ -1,0 +1,49 @@
+* {
+    font-family: sans-serif;
+}
+
+a.btn {
+    border-radius: .25rem;
+    border: 1px solid transparent;
+    padding: .5rem 1rem;
+    color: black;
+}
+
+a.btn:hover {
+    border-radius: .25rem;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.btn {
+}
+
+.formSearch {
+    padding: 25px;
+}
+
+.headings {
+    color: white;
+}
+
+.welcome {
+    height: 850px;
+    background-image: url("background1.jpg");
+    background-size: cover;
+}
+
+#links {
+    float: right;
+}
+
+#logo {
+    text-decoration: none;
+    color: gray;
+}
+
+.background {
+    background-color: mediumpurple;
+    height: 100%;
+}

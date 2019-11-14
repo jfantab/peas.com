@@ -1,82 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Profile</title>
-  <meta charset="utf-8">
-  <meta charset="UTF-8">
+    <title>Profile</title>
+    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <link href="bootstrap.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
     <link href="user.css" rel="stylesheet">
-
 </head>
-
 <body>
-    <div class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="main.html" id="logo"><h3>Peas.com</h3></a>
-            </div>
-            <ul class="nav navbar-nav" id="links">
-                <li><a href="#"><h4>User</h4></a></li>
-                <li><a href=""><h4>Login/ Register</h4></a></li>
+<div class="navbar navbar-expand-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="main.html" id="logo">
+            <h3>Peas.com</h3>
+        </a>
+        <ul class="navbar-nav" id="links">
+            <li class="nav-item item">
+                <a href="user.html" class="text-dark btn">
+                    <h3>User</h3>
+                </a>
+            </li>
+            <li class="nav-item item">
+                <a href="" class="text-dark btn">
+                    <h3>Login/Register</h3>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row jumbotron jumbotron-fluid user">
+    <div class="container">
+        <h1 class="user-name"> John Doe!</h1>
+    </div>
+</div>
+
+<div class="container-fluid" id="header-row">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <h2 style="text-align:center"> My Pantry </h2>
+        </div>
+        <div class="col-md-7">
+            <h2 style="text-align:center"> My Recipes </h2>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+<div class="container-fluid" id="search-row">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3 input-group">
+            <input type="text" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+                  <button class="search" type="submit">
+                     <img src="search.png">
+                  </button>
+               </span>
+        </div>
+        <div class="col-md-7 input-group">
+            <input type="text" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+                      <button class="search" type="submit">
+                          <img src="search.png">
+                      </button>
+                    </span>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <ul class="list-group" id="ingredient-list">
+                <li>Apple<span class="close">&times;</span></li>
+                <li>Steak<span class="close">&times;</span></li>
+                <li>Grapes<span class="close">&times;</span></li>
+                <li>Chicken<span class="close">&times;</span></li>
+                <li>Salt<span class="close">&times;</span></li>
+                <li>Ham<span class="close">&times;</span></li>
+                <li>Ham<span class="close">&times;</span></li>
+                <li>Ham<span class="close">&times;</span></li>
+                <li>Ham<span class="close">&times;</span></li>
+                <li>Ham<span class="close">&times;</span></li>
+                <li>Ham<span class="close">&times;</span></li>
+                <li>Ham<span class="close">&times;</span></li>
+                <li>Ham<span class="close">&times;</span></li>
+                <li>Ham<span class="close">&times;</span></li>
+                <li>Ham<span class="close">&times;</span></li>
+                <li>Ham<span class="close">&times;</span></li>
+                <li>Ham<span class="close">&times;</span></li>
+                <li>Ham<span class="close">&times;</span></li>
+                <li>Ham<span class="close">&times;</span></li>
+                <li>Ham<span class="close">&times;</span></li>
             </ul>
         </div>
-    </div>
-
-    <div class="row jumbotron jumbotron-fluid welcome">
-        <div class="container">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4 text-center">
-                <h1>John Doe!</h1>
-                <hr class="hidden-sm hidden-md hidden-lg">
-            </div>
-            <div class="col-sm-4"></div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-2 text-center">
-                <h2>My Pantry</h2>
-            </div>
-            <div class="col-sm-2"></div>
-            <div class="col-sm-8">
-                <h2>My Recipes</h2>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-3">
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Ingredient">
-                <ul class="ingredients">
-                  <li>Apple<button id="delete" type="button" style="float:right">x</button></li>
-                  <li>Steak<button id="delete" type="button" style="float:right">x</button></li>
-
-                  <li>Grapes<button id="delete" type="button" style="float:right">x</button></li>
-                  <li>Chicken<button id="delete" type="button" style="float:right">x</button></li>
-
-                  <li>Salt<button id="delete" type="button" style="float:right">x</button></li>
-                  <li>Ham<button id="delete" type="button" style="float:right">x</button></li>
-                </ul>
-            </div>
-            <div class="col-sm-7">
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Recipe">
-                <ul class="recipes">
-                    <div class="imagebox">
-                        <img src="chicken.jpg" style="float:left" />
+        <div class="col-md-7">
+            <div class="panel list-group" id="results-list">
+                <a href="#recipeOne" class="btn list-group-item list-group-item-action" data-toggle="collapse" data-parent="#results-list">
+                    <h4 class="list-group-item-heading">Recipe 1</h4>
+                    <p class="list-group-item-text">Cook time: X</p>
+                    <div class="collapse" id="recipeOne">
+                        Ingredients: Item 1, Item 2, Item 3, Item 4
                     </div>
-                        <li>Fry Fry Chicky Chick<button id="delete" type="button" style="float:right">x</button></li>
-                </ul>
-            <div class="col-sm-1">
+                </a>
+                <a href="#recipeTwo" class="btn list-group-item list-group-item-action" data-toggle="collapse" data-parent="#results-list">
+                    <h4 class="list-group-item-heading">Recipe 2</h4>
+                    <p class="list-group-item-text">Cook time: Y</p>
+                    <div class="collapse" id="recipeTwo">
+                        Ingredients: Item 1, Item 2, Item 3, Item 4
+                    </div>
+                </a>
+                <a href="#recipeThree" class="btn list-group-item list-group-item-action" data-toggle="collapse" data-parent="#results-list">
+                    <h4 class="list-group-item-heading">Recipe 3</h4>
+                    <p class="list-group-item-text">Cook time: Z</p>
+                    <div class="collapse" id="recipeThree">
+                        Ingredients: Item 1, Item 2, Item 3, Item 4
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-1">
+            </div>
         </div>
-    </div>
-
-
-
-
-
-
+        <!-- Scripts-->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </body>
 </html>

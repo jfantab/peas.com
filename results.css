@@ -7,6 +7,7 @@ a.btn {
     border: 1px solid transparent;
     padding: .5rem 1rem;
     color: black;
+    opacity: 0.8;
 }
 
 a.btn:hover {
@@ -28,10 +29,12 @@ html {
     color: white;
 }
 
-.welcome {
-    height: 850px;
-    background-image: url("background1.jpg");
+.results {
+    background-image: url("results_background.jpg");
+    background-repeat:no-repeat;
+    background-attachment:fixed;
     background-size: cover;
+    height: 850px;
 }
 
 #links {
@@ -43,7 +46,32 @@ html {
     color: gray;
 }
 
-.background {
-    background-color: mediumpurple;
-    height: 100%;
+a.btn {
+    border-radius: .25rem;
+    border: 1px solid transparent;
+    padding: .5rem 1rem;
+    color: black;
+    opacity: 0.8;
+}
+
+a.btn:hover{
+    opacity: 1.0;
+}
+
+.dropdown-item:focus {
+    outline: none;
+}
+
+:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+:active {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
 }

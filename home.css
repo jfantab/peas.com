@@ -17,7 +17,8 @@ html {
     scroll-behavior: smooth;
 }
 
-.btn {
+i {
+    color: grey;
 }
 
 .formSearch {
@@ -41,4 +42,9 @@ html {
 #logo {
     text-decoration: none;
     color: gray;
+}
+
+#scrollButton {
+    margin-top: 470px;
+    border-radius: 50%;
 }

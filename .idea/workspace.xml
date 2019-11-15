@@ -50,14 +50,6 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/loginSystem" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$USER_HOME$/Desktop/website" />
-    </key>
-  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -98,8 +90,8 @@
       <workItem from="1573160539111" duration="221000" />
       <workItem from="1573171443650" duration="2051000" />
       <workItem from="1573603875781" duration="3625000" />
-      <workItem from="1573694058226" duration="775000" />
-      <workItem from="1573705757761" duration="7690000" />
+      <workItem from="1573770636298" duration="6000" />
+      <workItem from="1573773018366" duration="15000" />
     </task>
     <task id="LOCAL-00001" summary="Home page file">
       <created>1572480299455</created>
@@ -115,14 +107,7 @@
       <option name="project" value="LOCAL" />
       <updated>1572480692516</updated>
     </task>
-    <task id="LOCAL-00003" summary="Login System intergrated to UI">
-      <created>1573776567297</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1573776567297</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,7 +132,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Home page file" />
     <MESSAGE value="Testing" />
-    <MESSAGE value="Login System intergrated to UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login System intergrated to UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing" />
   </component>
 </project>

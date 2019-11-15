@@ -2,6 +2,10 @@
     font-family: sans-serif;
 }
 
+a {
+    color: white;
+}
+
 a.btn {
     border-radius: .25rem;
     border: 1px solid transparent;

@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="af2f235d-4fb7-41a4-b3d4-eaad47854733" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/loginSystem/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/loginSystem/logout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/loginSystem/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/loginSystem/register.css" afterDir="false" />
-    </list>
+    <list default="true" id="af2f235d-4fb7-41a4-b3d4-eaad47854733" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +99,7 @@
       <workItem from="1573171443650" duration="2051000" />
       <workItem from="1573603875781" duration="3625000" />
       <workItem from="1573694058226" duration="775000" />
-      <workItem from="1573705757761" duration="7474000" />
+      <workItem from="1573705757761" duration="7690000" />
     </task>
     <task id="LOCAL-00001" summary="Home page file">
       <created>1572480299455</created>
@@ -122,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572480692516</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Login System intergrated to UI">
+      <created>1573776567297</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1573776567297</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +147,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Home page file" />
     <MESSAGE value="Testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Testing" />
+    <MESSAGE value="Login System intergrated to UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login System intergrated to UI" />
   </component>
 </project>

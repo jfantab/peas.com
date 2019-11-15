@@ -1,7 +1,5 @@
 <?php
-
 #COST OF "API POINTS" OF RUNNING THIS FILE IS $number_of_queries + 1 to factor for getting recipe result list
-
 ######################## CONNECT TO MYSQL DATABASE ########################
 $host="127.0.0.1";
 $port=3306;
@@ -13,28 +11,22 @@ $dbname="peas";
 $db = new mysqli($host, $user, $password, $dbname, $port, $socket)
 or die ('Could not connect to the database server' . mysqli_connect_error());
 ######################## CONNECT SEARCH BUTTON TO USER_INPUT ########################
-
 session_start();
 /*Right now this is just a constant variable but we will connect this to a submit button*/
-$user_input = "chicken";
+#$user_input = "grandma's%20cookies";
+
 
 ######################## CONSTRUCT API HTTP REQUEST #################################
-
 /*This is the URL that will be in the cURL request function*/
 $baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=";
-$number_of_queries = 2;
 $bool_instructions = "&offset=0&instructionsRequired=true&query=";
-
 $baseURL .= $number_of_queries;
 $baseURL .= $bool_instructions;
 $baseURL .= $user_input;
 
 ######################## GET RECIPE BY HTTP REQUEST #################################
-
 #Using a test JSON file for now
-
 $curl = curl_init();
-
 curl_setopt_array($curl, array(
 	CURLOPT_URL => $baseURL,
 	CURLOPT_RETURNTRANSFER => true,
@@ -49,45 +41,31 @@ curl_setopt_array($curl, array(
 		"x-rapidapi-key: ae97828bcdmsh8763975686b1d9cp19500fjsnd39c542737a9"
 	),
 ));
-
 $response = curl_exec($curl);
 #echo $response;
 #echo "<br><br>";
 $err = curl_error($curl);
-
 curl_close($curl);
-
 if ($err) {
 	echo "cURL Error #:" . $err;
 } 
-
 #$json_array = json_decode($response, true);
 #$json_string = file_get_contents('recipe_results.json');
 $json_array = json_decode($response, true);
 ######################## STORE RECIPE IN PHP ARRAY ##################################
-
-
 for ($x = 0; $x <= sizeof($json_array['results'])-1; $x++)
 $recipes[$x] = $json_array['results'][$x]['id'];
 
-
 ######################## ITERATE OVER RECIPE RESULTS ################################
 for($i = 0; $i <= sizeof($recipes)-1; $i++){
-
 ######################## CONSTRUCT API HTTP REQUEST #################################
 	$baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/";
 	$get_recipe_information = "/information";
-
 	$baseURL .= $recipes[$i];
-
 	$baseURL .= $get_recipe_information;
-
 ######################## GET RECIPE INFORMATION BY HTTP REQUEST #####################
-
 #Using test JSON file for now
-
 	$curl = curl_init();
-
 	curl_setopt_array($curl, array(
 		CURLOPT_URL => $baseURL,
 		CURLOPT_RETURNTRANSFER => true,
@@ -102,21 +80,16 @@ for($i = 0; $i <= sizeof($recipes)-1; $i++){
 			"x-rapidapi-key: ae97828bcdmsh8763975686b1d9cp19500fjsnd39c542737a9"
 		),
 	));
-
 	$response = curl_exec($curl);
 	#echo $response;
 	#echo "<br><br>";
 	$err = curl_error($curl);
 	curl_close($curl);
-
 	if ($err) {
 		echo "cURL Error #:" . $err;
 	} 
-
 	$json_array = json_decode($response, true);
-
 ######################## DECCODE AND EXTRACT FROM JSON ARRAY ########################	
-
 	#Your variables will be constant if you are using a test JSON file
 	#$json_string = file_get_contents('recipe_information.json');
 	#$json_array = json_decode($json_string, true);
@@ -153,7 +126,6 @@ for($i = 0; $i <= sizeof($recipes)-1; $i++){
 		$recipe_ingredients_names[$x] = $json_array['extendedIngredients'][$x]['name'];
 		$recipe_ingredients_amount[$x] = $json_array['extendedIngredients'][$x]['originalString'];
 	}
-
 	
 	for ($x = 0; $x <= sizeof($json_array['extendedIngredients'])-1; $x++) {
 		#echo $recipe_ingredients_ids[$x];
@@ -180,7 +152,6 @@ for($i = 0; $i <= sizeof($recipes)-1; $i++){
 				('$recipe_ingredients_ids[$x]','$recipe_ingredients_names[$x]')";
 		mysqli_query($db, $sql);	
 	}
-
 ######################## UPDATE RECIPE_INGREDIENT #################	
 	for ($x = 0; $x <= sizeof($json_array['extendedIngredients'])-1; $x++) {
 		$sql = "INSERT INTO Recipe_Ingredients(recipe_id, ingredient_id, ingredient_amt)
@@ -190,5 +161,7 @@ for($i = 0; $i <= sizeof($recipes)-1; $i++){
 	}
 	sleep(1);
 }
-$db->close();
+
+
 ?>
+

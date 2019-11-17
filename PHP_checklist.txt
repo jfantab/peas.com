@@ -1,0 +1,96 @@
+PHP function list
+
+Tables:
+Recipe
+Recipe_Cache
+Recipe_Ingredient
+User
+Ingredient
+Ingredient_Cache
+Comment
+
+_______________________________________________________________________________________________		
+
+Login Page:
+
+register.php --> User
+	parameter: "[USERNAME]" and "[PASSWORD]"
+	returns:   boolean of registration's success status
+
+login.php --> User
+	parameter: "[USERNAME]" and "[PASSWORD]"
+	returns:   Takes you to Home Page
+_______________________________________________________________________________________________	
+
+Home Page:
+
+get_by_recipe.php --> Recipe, Ingredient, Recipe_Ingredient
+	parameter: "SEARCH QUERY"
+	returns:   $recipes = list of recipe_id
+
+get_by_ingredientss.php --> Recipe, Ingredient, Recipe_Ingredient
+	parameter: "SEARCH QUERY"
+	returns:   $recipes = list of recipe_id
+_______________________________________________________________________________________________	
+
+User Page:
+
+get_recipes_by_user.php --> Recipe_Cache, User
+	parameter: user_id
+	returns:   $recipes = list of recipe_id
+
+get_ingredients_by_user.php --> Ingredient_Cache, User
+	parameter: user_id
+	returns:   $pantry = list of ingredient_id
+
+get_ingredient_information.php --> Ingredient
+	parameter:  ingredient_id
+	returns     $ingredient_names = object/map with keys(ingredient_id, ingredient_name)
+
+get_recipe_information.php --> Recipe
+	parameter: recipe_id
+	returns:    $recipe = object/map with keys(recipe_id, recipe_name, recipe_likes, readyinMinutes, recipe_image, recipe_instructions)
+
+get_recipe_ingredients.php --> Recipe, Ingredient Recipe_Ingrdient
+	parameter: recipe_id
+	returns:   $ingredients = object/map with keys(recipe_id, ingredient_id, ingrdient_amt)
+
+get_comments_by_recipe.php --> Recipe, Comment, User
+	parameter: recipe_id  
+	returns:   $comments = list of comment_id
+
+get_comment_information.php --> Comment
+	parameter: comment_id
+	return:    $comment = object/map with keys(comment_id, recipe_id, user_id, comment, comment_likes, timestamp)
+
+get_by_ingredient_in_cache.php --> Recipe, Ingredient, Recipe_Ingredient
+	parameter: "SEARCH QUERY CONSTRUCTED FROM RETURN OF USER_CACHE"
+	return:    $recipes = list of recipe_id
+_______________________________________________________________________________________________	
+
+Results Page:                   
+           
+get_recipe_information.php --> Recipe
+	parameter: recipe_id
+	returns:    $recipe = object/map with keys(recipe_id, recipe_name, recipe_likes, readyinMinutes, recipe_image, recipe_instructions)
+
+get_recipe_ingredients.php --> Recipe, Ingredient Recipe_Ingrdient
+	parameter: recipe_id
+	returns:   $ingredients = object/map with keys(recipe_id, ingredient_id, ingrdient_amt)
+
+get_comments_by_recipe.php --> Recipe, Comment, User
+	parameter: recipe_id  
+	returns:   $comments = list of comment_id
+
+get_comment_information.php --> Comment
+	parameter: comment_id
+	return:    $comment = object/map with keys(comment_id, recipe_id, user_id, comment, comment_likes, timestamp) 
+
+get_by_recipe.php --> Recipe, Ingredient, Recipe_Ingredient
+	parameter: "SEARCH QUERY"
+	returns:   $recipes = list of recipe_id
+
+get_by_ingredientss.php --> Recipe, Ingredient, Recipe_Ingredient
+	parameter: "SEARCH QUERY"
+	returns:   $recipes = list of recipe_id                                                   
+

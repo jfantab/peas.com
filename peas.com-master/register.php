@@ -1,5 +1,5 @@
 <!--
-- Page used for registeration and logging in
+- Page used for registration and logging in
 -->
 
 

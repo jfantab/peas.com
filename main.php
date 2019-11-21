@@ -7,8 +7,8 @@
     <script src="https://kit.fontawesome.com/a126e12bdc.js" crossorigin="anonymous"></script>
     <title>Home</title>
 </head>
+<body>
     <?php include 'navbar.php'; ?>
-    </div>
     <div class="container-fluid main">
         <div class="row jumbotron jumbotron-fluid welcome">
             <div class="container-fluid">

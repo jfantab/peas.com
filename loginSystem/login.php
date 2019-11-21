@@ -6,6 +6,10 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+<div class="navbar navbar-expand-sm">
+            <a class="navbar-brand" href="../main.html" id="logo"><h3>Peas.com</h3></a>
+    </div>
+
   <div class="header">
   	<h2>Login</h2>
   </div>

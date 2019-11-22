@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link href="bootstrap.css" rel="stylesheet">
     <link href="home.css" rel="stylesheet">
+    <link rel="shortcut icon" href="recipe.ico" type="image/x-icon" />
     <script src="https://kit.fontawesome.com/a126e12bdc.js" crossorigin="anonymous"></script>
     <title>Home</title>
 </head>

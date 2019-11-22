@@ -7,13 +7,15 @@
     $errors = array();
 
     // Credentials
-      $dbhost = 'localhost';
-      $dbuser = 'root';
-      $dbpass = 'root';
-      $dbname = 'peas';
+    $host="127.0.0.1";
+    $port=8889;
+    $socket="";
+    $user="root";
+    $password="";
+    $dbname="peas";
 
     // connect to the database
-    $db = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+    $db = mysqli_connect($host, $user, $password, $dbname);
     //check connection --- comment this if statement out if you cannot connect to database to see page
     if(mysqli_connect_errno()) {
       $msg = "Database connection failed: ";

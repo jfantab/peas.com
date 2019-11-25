@@ -8,8 +8,11 @@
 </head>
 <body>
 <div class="navbar navbar-expand-sm">
-            <a class="navbar-brand" href="../main.php" id="logo"><h3>Peas.com</h3></a>
+<div class="container-fluid">
+      <a class="navbar-brand" href="../main.php" id="logo"><h3>Peas.com</h3></a>
     </div>
+</div>
+
   <div class="header">
   	<h2>Register</h2>
   </div>

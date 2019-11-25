@@ -3,6 +3,7 @@
 <html>
 <head>
   <title>Registration system PHP and MySQL</title>
+  <link href="../bootstrap/bootstrap.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>

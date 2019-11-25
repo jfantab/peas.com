@@ -3,12 +3,12 @@
 <html>
 <head>
   <title>Registration system PHP and MySQL</title>
-  <link href="bootstrap.css" rel="stylesheet">
+  <link href="../bootstrap/bootstrap.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <div class="navbar navbar-expand-sm">
-            <a class="navbar-brand" href="../main.html" id="logo"><h3>Peas.com</h3></a>
+            <a class="navbar-brand" href="../main.php" id="logo"><h3>Peas.com</h3></a>
     </div>
   <div class="header">
   	<h2>Register</h2>

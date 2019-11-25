@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="navbar navbar-expand-sm">
-            <a class="navbar-brand" href="../main.html" id="logo"><h3>Peas.com</h3></a>
+            <a class="navbar-brand" href="../main.php" id="logo"><h3>Peas.com</h3></a>
     </div>
 
   <div class="header">

@@ -1,5 +1,13 @@
 <?php
     session_start();
+    $namePlaceholder = " ";
+    if(!isset($_SESSION['username']))
+    {
+        $namePlaceholder = "";
+    }
+    else{
+        $namePlaceholder = $_SESSION['username'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +26,7 @@
             <div class="container-fluid">
                 <div class="col"></div>
                 <div class="col text-center headings">
-                    <h1 class="display-2">Welcome, <?php echo $_SESSION['username'] ?>!</h1>
+                    <h1 class="display-2">Welcome <strong><?php echo $namePlaceholder; ?></strong>!</h1>
                     <br>
                     <h2>What would you like to cook today?</h2>
                 </div>

@@ -7,11 +7,11 @@
     $errors = array();
 
     // Credentials
-    $host="127.0.0.1";
-    $port=8889;
-    $socket="";
+    $host="localhost";
+//     $port=8889;
+//     $socket="";
     $user="root";
-    $password="";
+    $password="root";
     $dbname="peas";
 
     // connect to the database
@@ -65,7 +65,7 @@
         mysqli_query($db, $query);
         $_SESSION['username'] = $username;
         $_SESSION['success'] = "You are now logged in";
-        header('location: ../main.html');
+        header('location: ../main.php');
       }
     }
     // LOGIN USER
@@ -87,7 +87,7 @@
         if (mysqli_num_rows($results) == 1) {
           $_SESSION['username'] = $username;
           $_SESSION['success'] = "You are now logged in";
-          header('location: ../main.html');
+          header('location: ../main.php');
         }else {
             array_push($errors, "Wrong username/password combination");
         }

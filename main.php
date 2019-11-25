@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +18,7 @@
             <div class="container-fluid">
                 <div class="col"></div>
                 <div class="col text-center headings">
-                    <h1 class="display-2">Welcome, John!</h1>
+                    <h1 class="display-2">Welcome, <?php echo $_SESSION['username'] ?>!</h1>
                     <br>
                     <h2>What would you like to cook today?</h2>
                 </div>

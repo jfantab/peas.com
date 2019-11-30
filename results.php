@@ -13,47 +13,22 @@
     <!-- Functions-->
     <?php
     $recipes = array(
-        $recipeIDs = array();
-        $recipeImages = array();
-        $recipeServings = array();
-        $recipeLikes = array();
-        $recipePrepTime = array();
-        $recipeName = array();
-        $recipeInstructions = array();
-        $recipeIsDairyFree = array();
-        $recipeIsVegan = array();
-        $recipeIsLowFODMAP = array();
-        $recipeIsGlutenFree = array();
+        $testRecipe = array(
+             "id"=>282,
+             "image"=>'https://spoonacular.com/recipeImages/282-556x370.jpg',
+             "servings"=>4,
+             "likes"=>0,
+             "prep_time"=>45,
+             "name"=>'Roasted Salmon With Spicy Cauliflower',
+             "instructions"=>'Preheat oven to 450 degrees. Gather garlic, anchovies (if using), and red-pepper flakes into a pile. Using a chefs knife, coarsely chop; season generously with salt. Using flat side of knife blade, mash mixture into a paste.',
+             "dairy_free"=>TRUE,
+             "vegan"=>FALSE,
+             "low_fodmap"=>FALSE,
+             "gluten_free"=>TRUE
+         )
     );
-    function updateArrays() {
-        for ($i = 0; $i < count($recipes); $i++) {
-            for ($j = 0; $j < count($recipes[$i]); $j++) {
-                if ($j == 0) {
-
-                } elseif ($j == 1) {
-
-                } elseif ($j == 2) {
-
-                } elseif ($j == 3) {
-
-                } elseif ($j == 4) {
-
-                } elseif ($j == 5) {
-
-                } elseif ($j == 6) {
-
-                } elseif ($j == 7) {
-
-                } elseif ($j == 8) {
-
-                } elseif ($j == 9) {
-
-                } elseif ($j == 10) {
-
-                }
-            }
-        }
-    }
+    include 'results_functions.php';
+    ?>
 
     <title>Search Results</title>
 </head>
@@ -127,13 +102,32 @@
         <div class="col"></div>
         <div class="panel list-group" id="results-list">
             <?php
-            for ($x = 0; $x < 5; $x++) {
+            for ($x = 0; $x < 1; $x++) {
             ?>
                 <a href="#recipe<?php echo $x; ?>" class="btn list-group-item list-group-item-action" data-toggle="collapse" data-parent="#results-list">
-                    <h4 class="list-group-item-heading">Recipe <?php echo $x; ?></h4>
-                    <p class="list-group-item-text">Cook time: X</p>
+                    <h4 class="list-group-item-heading"><b><?php echo $recipes[$x]['name']; ?></b></h4>
+                    <img src=<?php echo $recipes[$x]['image']; ?> height=100 width=100>
+                    <p class="list-group-item-text"><b>Cook time: </b><?php echo $recipes[$x]['prep_time']; ?> minutes
+                        <span align="right"><b>Likes: </b><?php echo $recipes[$x]['likes']; ?></span>
+                    </p>
+                    <p class="list-group-item-text">
+                        <?php
+                            if ($recipes[$x]['dairy_free']) {
+                                ?><b>Dairy Free   </b><?php
+                            }
+                            if ($recipes[$x]['vegan']) {
+                                ?><b>Vegan   </b><?php
+                            }
+                            if ($recipes[$x]['low_fodmap']) {
+                                ?><b>Low FODMAP   </b><?php
+                            }
+                            if ($recipes[$x]['gluten_free']) {
+                                ?><b>Gluten Free   </b><?php
+                            }
+                        ?>
+                    </p>
                     <div class="collapse" id="recipe<?php echo $x; ?>">
-                        Ingredients: Item 1, Item 2, Item 3, Item 4
+                        <b>Instructions: </b><?php echo $recipes[$x]['instructions']; ?>
                         <div class="d-flex justify-content-end">
                             <button class="btn btn-primary" type="button">Add to My Recipes</button>
                         </div>

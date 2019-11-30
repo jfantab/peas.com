@@ -44,7 +44,7 @@
                     <div class="input-group">
                         <input class="form-control" type="text" placeholder="Search for recipes by ingredients" value="" id="ingredients">
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-primary"><a href="results.html">Submit</a></button>
+                            <button type="button" class="btn btn-primary"><a href="results.php">Submit</a></button>
                         </span>
                     </div>
                 </form>
@@ -53,7 +53,7 @@
                     <div class="input-group">
                         <input class="form-control" type="text" placeholder="Search for recipes" value="" id="recipes">
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-primary"><a href="results.html">Submit</a></button>
+                            <button type="button" class="btn btn-primary"><a href="results.php">Submit</a></button>
                         </span>
                     </div>
                 </form>

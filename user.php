@@ -48,12 +48,14 @@ $dbname="peas";
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-3 input-group">
-                    <input type="text" class="form-control" placeholder="Search...">
+                    <input id="search" class="form-control" type="text" name="item" placeholder="Search...">
                     <span class="input-group-btn">
                           <button class="search" type="submit">
                              <img src="search.png">
                           </button>
                     </span>
+                 
+
             </div>
 
             <div class="col-md-7 input-group">
@@ -72,50 +74,41 @@ $dbname="peas";
         <div class="row">
             <div class="col-md-1"></div>
 
-            <div class="col-md-3">
-                <div name="ingredients">
-                <ul class="list-group" id="ingredient-list">
+            <div style: "height:1000px; class="col-md-3" id="ingredients">
+
+                <ul class="list-group" style="height:500px; overflow:scroll">
 
                    <?php
-
                         $query = "SELECT  ingredient_name FROM ingredient_cache, ingredient WHERE ingredient.ingredient_id = ingredient_cache.ingredient_id and user_id = $user_id";
                         $result = mysqli_query($db, $query);
+                        $search_query = "SELECT ingredient_name FROM ingredient_cache WHERE ingredient_name = $item";
+                        $search_result = mysqli_query($db, $search_query);
 
+                   while($row = mysqli_fetch_array($search_result){
+                        <li style="text-align: left; padding:10px; margin-left:-20px; margin-right: -15px" class="list-group-item"><?php echo $row['ingredient_name']; ?></li>
+                   } 
 
                    if(mysqli_num_rows($result) > 0) {
                        while($row = mysqli_fetch_array($result)){	?>
-                            <li ><?php echo $row['ingredient_name']; ?></li>
+                            <li style="text-align: left; padding:10px; margin-left:-20px; margin-right: -15px" class="list-group-item"><?php echo $row['ingredient_name']; ?></li>
                         <?php }
 
                         mysqli_free_result($result);
+
                     } else{
                         echo "<li>"."Pantry is Empty!"."</li>";
                     }
-                    $db->close();
+
                     ?>
                 </ul>
-                </div>
+
             </div>
             <div class="col-md-7">
-                <div class="panel list-group" id="results-list">
+                <div class="panel list-group" id="results-list" style="height:500px; overflow:scroll">
                     <a href="#recipeOne" class="btn list-group-item list-group-item-action" data-toggle="collapse" data-parent="#results-list">
                         <h4 class="list-group-item-heading">Recipe 1</h4>
                         <p class="list-group-item-text">Cook time: X</p>
                         <div class="collapse" id="recipeOne">
-                            Ingredients: Item 1, Item 2, Item 3, Item 4
-                        </div>
-                    </a>
-                    <a href="#recipeTwo" class="btn list-group-item list-group-item-action" data-toggle="collapse" data-parent="#results-list">
-                        <h4 class="list-group-item-heading">Recipe 2</h4>
-                        <p class="list-group-item-text">Cook time: Y</p>
-                        <div class="collapse" id="recipeTwo">
-                            Ingredients: Item 1, Item 2, Item 3, Item 4
-                        </div>
-                    </a>
-                    <a href="#recipeThree" class="btn list-group-item list-group-item-action" data-toggle="collapse" data-parent="#results-list">
-                        <h4 class="list-group-item-heading">Recipe 3</h4>
-                        <p class="list-group-item-text">Cook time: Z</p>
-                        <div class="collapse" id="recipeThree">
                             Ingredients: Item 1, Item 2, Item 3, Item 4
                         </div>
                     </a>

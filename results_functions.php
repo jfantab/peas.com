@@ -3,32 +3,20 @@
         for ($i = 0; $i < count($recipes); $i++) {
             for ($j = 0; $j < count($recipes[$i]); $j++) {
                 if ($j == 0) {
-
                 } elseif ($j == 1) {
-
                 } elseif ($j == 2) {
-
                 } elseif ($j == 3) {
-
                 } elseif ($j == 4) {
-
                 } elseif ($j == 5) {
-
                 } elseif ($j == 6) {
-
                 } elseif ($j == 7) {
-
                 } elseif ($j == 8) {
-
                 } elseif ($j == 9) {
-
                 } elseif ($j == 10) {
-
                 }
             }
         }
     }
-
     function testArrays($recipes) {
         array_push($recipes, $testRecipe = array(
             "id"=>282,
@@ -44,7 +32,6 @@
             "gluten_free"=>TRUE
         ));
     }
-
     function resetArrays($recipes) {
         for ($i = 0; $i < count($recipes); $i++) {
             for ($j = 0; $j < count($recipes[$i]); $j++) {

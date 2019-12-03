@@ -1,7 +1,7 @@
 <?php
 ######################## CONNECT SEARCH BUTTON TO USER_INPUT ########################
 
-$user_input = "Indian";
+$user_input = "Indian"
 $number_of_queries = 2;
 
 echo $user_input;

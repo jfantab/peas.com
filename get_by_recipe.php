@@ -13,8 +13,9 @@ or die ('Could not connect to the database server' . mysqli_connect_error());
 ######################## CONNECT SEARCH BUTTON TO USER_INPUT ########################
 session_start();
 /*Right now this is just a constant variable but we will connect this to a submit button*/
-#$user_input = "grandma's%20cookies";
-
+if(isset($_POST['recipe_input']){
+    $user_input = $_POST['recipe_input'];
+}
 
 ######################## CONSTRUCT API HTTP REQUEST #################################
 /*This is the URL that will be in the cURL request function*/

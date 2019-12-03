@@ -28,7 +28,7 @@ get_by_recipe.php --> Recipe, Ingredient, Recipe_Ingredient
 	parameter: "SEARCH QUERY"
 	returns:   $recipes = list of recipe_id
 
-get_by_ingredientss.php --> Recipe, Ingredient, Recipe_Ingredient
+get_by_ingredients.php --> Recipe, Ingredient, Recipe_Ingredient
 	parameter: "SEARCH QUERY"
 	returns:   $recipes = list of recipe_id
 _______________________________________________________________________________________________	

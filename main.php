@@ -6,7 +6,7 @@
         $namePlaceholder = "";
     }
     else{
-        $namePlaceholder = $_SESSION['username'];
+        $namePlaceholder = " " + $_SESSION['username'];
     }
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
             <div class="container-fluid">
                 <div class="col"></div>
                 <div class="col text-center headings">
-                    <h1 class="display-2">Welcome <strong><?php echo $namePlaceholder; ?></strong>!</h1>
+                    <h1 class="display-2">Welcome<strong><?php echo $namePlaceholder; ?></strong>!</h1>
                     <br>
                     <h2>What would you like to cook today?</h2>
                 </div>
@@ -40,18 +40,18 @@
         <div class="search" id="forms">
             <div class="col"></div>
             <div class="col">
-                <form name="searchBar" class="formSearch">
+                <form name="searchBar" class="formSearch" action="get_by_ingredient.php">
                     <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search for recipes by ingredients" value="" id="ingredients">
+                        <input class="form-control" type="text" placeholder="Search for recipes by ingredients" name="ingredient_input" id="ingredients">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-primary"><a href="results.php">Submit</a></button>
                         </span>
                     </div>
                 </form>
                 <hr>
-                <form name="searchBar" class="formSearch">
+                <form name="searchBar" class="formSearch" action="get_by_recipe.php">
                     <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search for recipes" value="" id="recipes">
+                        <input class="form-control" type="text" placeholder="Search for recipes" name="recipe_input" id="recipes">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-primary"><a href="results.php">Submit</a></button>
                         </span>

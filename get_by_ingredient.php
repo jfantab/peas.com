@@ -16,7 +16,9 @@ or die ('Could not connect to the database server' . mysqli_connect_error());
 
 ######################## CONNECT SEARCH BUTTON TO USER_INPUT ########################
 /*You must have no spaces in your string!*/
-$user_input = "eggs,buttermilk,vanilla";
+if(isset($_POST['ingredient_input']){
+    $user_input = $_POST['ingredient_input'];
+}
 session_start();
 /*Right now this is just a constant variable but we will connect this to a submit button*/
 

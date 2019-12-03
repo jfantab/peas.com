@@ -122,7 +122,7 @@ session_start();
 
                     <a href="#recipe<?php echo $x; ?>" class="btn list-group-item list-group-item-action" data-toggle="collapse"  data-parent="#results-list">
                         <div class="row">
-                        <img src=<?php echo $recipe_data['recipe_image']; ?> height=150 width=150 style="padding-left:10px; padding-right:10px; padding-bottom:10px">
+                        <img src=<?php echo $recipe_data['recipe_image']; ?> height:20% width=20% style="padding-left:10px; padding-right:10px; padding-bottom:10px">
                         <span>
                         <h4 class="list-group-item-heading"><b><?php echo $recipe_data['recipe_name']; ?></b></h4>
                         <br>
@@ -151,7 +151,19 @@ session_start();
                         </span>
 
                         <div class="collapse" id="recipe<?php echo $x; ?>">
-                            <b>Instructions: </b><?php echo $recipe_data['recipe_instructions']; ?>
+
+                            <b>Ingredients: </b> <br>
+                            <?php
+                            $query = "SELECT ingredient_amt from recipe_ingredients where recipe_id = $recipes[$x]";
+
+                            $ingredient_list = mysqli_query($db, $query);
+                            while($ingredient_data = mysqli_fetch_array($ingredient_list)) {
+                                 echo $ingredient_data['ingredient_amt'];
+                                 echo "<br>";
+                                 }
+                                 ?>
+                            <br> <b>Instructions: </b> <br>
+                            <?php echo $recipe_data['recipe_instructions']; ?>
                             <div class="d-flex justify-content-end">
                                 <form action="user_functions.php" method="post">
                                     <input type="hidden" name="recipe_name" value= "<?php $recipe_data['recipe_name'] ?>">

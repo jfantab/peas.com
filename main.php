@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $namePlaceholder = " ";
+    $namePlaceholder = "";
     if(!isset($_SESSION['username']))
     {
         $namePlaceholder = "";

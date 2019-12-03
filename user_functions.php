@@ -20,4 +20,3 @@ if($result = mysqli_query($db, $sql)){
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($db);
 echo "<br><b>";
 }
-

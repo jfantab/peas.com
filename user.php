@@ -99,43 +99,50 @@ session_start();
                 </ul>
             </div>
 
+           <?php include 'user_functions.php';
+           mysqli_free_result($result);?>
 
 
-            <?php
 
-                include 'user_functions.php';
-                ?>
 
             <div class="col-md-7">
+
                 <div id="recipe_list" class="panel list-group" style="max-height:900px; overflow-y:auto; overflow-x: hidden">
                 <?php
-                    for($i = 0; $i <= sizeof($recipes)-1; $i++){
-                    	$sql = "SELECT recipe_id, recipe_name, recipe_likes, readyinMinutes, recipe_image, recipe_instructions from recipe where recipe_id = $recipes[$i]";
-                    	$result = mysqli_query($db, $sql);
-                    	$followingdata = $result->fetch_assoc(); ?>
+                    for($x = 0; $x <= sizeof($recipes)-1; $x++){
+                    	$sql = "SELECT recipe_id, recipe_name, recipe_likes, readyInMinutes, recipe_image, recipe_instructions from recipe where recipe_id = $recipes[$x]";
+
+                    	$recipe_list = mysqli_query($db, $sql);
+
+
+
+                    	while($recipe_data = mysqli_fetch_array($recipe_list)) { ?>
+
+
+
                     <a href="#recipe<?php echo $x; ?>" class="btn list-group-item list-group-item-action" data-toggle="collapse"  data-parent="#results-list">
                         <div class="row">
-                        <img src=<?php echo $followingdata[$x]['image']; ?> height=150 width=150 style="padding-left:10px; padding-right:10px; padding-bottom:10px">
+                        <img src=<?php echo $recipe_data['recipe_image']; ?> height=150 width=150 style="padding-left:10px; padding-right:10px; padding-bottom:10px">
                         <span>
-                        <h4 class="list-group-item-heading"><b><?php echo $followingdata[$x]['name']; ?></b></h4>
+                        <h4 class="list-group-item-heading"><b><?php echo $recipe_data['recipe_name']; ?></b></h4>
                         <br>
 
 
 
-                        <p class="list-group-item-text">Cook time: </b><?php echo $followingdata[$x]['prep_time']; ?> minutes</p>
-                        <p class="list-group-item-text"><b>Likes: </b><?php echo $followingdata[$x]['likes']; ?></span></p>
+                        <p class="list-group-item-text">Cook time: </b><?php echo $recipe_data['readyInMinutes']; ?> minutes</p>
+                        <p class="list-group-item-text"><b>Likes: </b><?php echo $recipe_data['recipe_likes']; ?></span></p>
                         <p class="list-group-item-text">
                             <?php
-                                if ($followingdata[$x]['dairy_free']) {
+                                if ($recipe_data['recipe_dairy']) {
                                     ?><b>Dairy Free   </b><?php
                                 }
-                                if ($followingdata[$x]['vegan']) {
+                                if ($recipe_data['recipe_vegan']) {
                                     ?><b>Vegan   </b><?php
                                 }
-                                if ($followingdata[$x]['low_fodmap']) {
+                                if ($recipe_data['recipe_fodmap']) {
                                     ?><b>Low FODMAP   </b><?php
                                 }
-                                if ($followingdata[$x]['gluten_free']) {
+                                if ($recipe_data['recipe_gluten']) {
                                     ?><b>Gluten Free   </b><?php
                                 }
                             ?>
@@ -144,17 +151,17 @@ session_start();
                         </span>
 
                         <div class="collapse" id="recipe<?php echo $x; ?>">
-                            <b>Instructions: </b><?php echo $followingdata[$x]['instructions']; ?>
+                            <b>Instructions: </b><?php echo $recipe_data['recipe_instructions']; ?>
                             <div class="d-flex justify-content-end">
                                 <form action="user_functions.php" method="post">
-                                    <input type="hidden" name="recipe_name" value= "<?php $followingdata[$x]['name'] ?>">
+                                    <input type="hidden" name="recipe_name" value= "<?php $recipe_data['recipe_name'] ?>">
                                     <button class="btn btn-primary" name="remove_recipe" type="button">Remove</button>
 
                                 </form>
                             </div>
                         </div>
                     </a>
-                    <?php }
+                    <?php } }
                     $db->close();?>
                 </div>
             <div class="col-md-1"> </div>

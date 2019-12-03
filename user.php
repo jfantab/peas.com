@@ -12,6 +12,15 @@
 
 <?php
 require_once("config.php");
+session_start();
+    $namePlaceholder = " ";
+    if(!isset($_SESSION['username']))
+    {
+        $namePlaceholder = "";
+    }
+    else{
+        $namePlaceholder = $_SESSION['username'];
+    }
 ?>
 
 <head>
@@ -27,7 +36,7 @@ require_once("config.php");
 
     <div class="row jumbotron jumbotron-fluid user">
         <div class="container">
-            <h1 class="user-name"> John Doe!</h1>
+            <h1 class="user-name"><?php echo $namePlaceholder; ?></h1>
         </div>
     </div>
 
@@ -66,7 +75,7 @@ require_once("config.php");
             <div style: "height:1000px; class="col-md-3" >
                 <ul class="list-group" id="pantry" style="max-height:900px; overflow-y:auto; overflow-x: hidden">
                    <?php
-                        $query = "SELECT  ingredient_name FROM Ingredient";
+                        $query = "SELECT  ingredient_name FROM ingredient_cache, ingredient where ingredient.ingredient_id = ingredient_cache.ingredient_id and user_id = $user_id";
                         $result = mysqli_query($db, $query);
 
 

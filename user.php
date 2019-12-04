@@ -110,7 +110,7 @@ session_start();
                 <div id="recipe_list" class="panel list-group" style="max-height:900px; overflow-y:auto; overflow-x: hidden">
                 <?php
                     for($x = 0; $x <= sizeof($recipes)-1; $x++){
-                    	$sql = "SELECT recipe_id, recipe_name, recipe_likes, readyInMinutes, recipe_image, recipe_instructions from recipe where recipe_id = $recipes[$x]";
+                    	$sql = "SELECT recipe_id, recipe_name, recipe_likes, readyInMinutes, recipe_image, recipe_instructions, recipe_dairy, recipe_gluten, recipe_fodmap, recipe_vegan from recipe where recipe_id = $recipes[$x]";
 
                     	$recipe_list = mysqli_query($db, $sql);
 
@@ -130,7 +130,6 @@ session_start();
 
 
                         <p class="list-group-item-text">Cook time: </b><?php echo $recipe_data['readyInMinutes']; ?> minutes</p>
-                        <p class="list-group-item-text"><b>Likes: </b><?php echo $recipe_data['recipe_likes']; ?></span></p>
                         <p class="list-group-item-text">
                             <?php
                                 if ($recipe_data['recipe_dairy']) {
@@ -167,7 +166,7 @@ session_start();
                             <div class="d-flex justify-content-end">
                                 <form action="user_functions.php" method="post">
                                     <input type="hidden" name="recipe_name" value= "<?php $recipe_data['recipe_name'] ?>">
-                                    <button class="btn btn-primary" name="remove_recipe" type="button">Remove</button>
+                                    <button class="btn btn-primary" name="remove_recipe" onclick="remove_recipe()" type="button">Remove</button>
 
                                 </form>
                             </div>

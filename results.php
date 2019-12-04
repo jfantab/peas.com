@@ -32,6 +32,7 @@
     if(isset($_REQUEST["ingredient_input"]))
         {$ingredient_input = $_REQUEST["ingredient_input"];}
     getByRecipe($recipeIDs, $recipe_input, $db);
+    getByIngredient($recipeIDs, $ingredient_input, $db);
     // 282, 341, 392, 431, 474, 518, 541, 860, 760118
     populateRecipes($recipes, $recipeIDs, $db);
     ?>

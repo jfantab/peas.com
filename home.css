@@ -2,27 +2,27 @@
     font-family: sans-serif;
 }
 
-a {
-    color: white;
-}
-
-a.btn {
-    border-radius: .25rem;
-    border: 1px solid transparent;
-    padding: .5rem 1rem;
-    color: black;
-}
-
-a.btn:hover {
-    border-radius: .25rem;
-}
-
 html {
     scroll-behavior: smooth;
 }
 
 i {
     color: grey;
+}
+
+input[type=submit] {
+    background-color: rgb(0, 123, 255);
+    border: 1px solid transparent;
+    padding: .5rem 1rem;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    height: 40px;
+    border-radius: .25rem;
+}
+
+small {
+    color: white;
 }
 
 .formSearch {
@@ -40,12 +40,18 @@ i {
 }
 
 #formOne {
-    background-image: url("sky.jpg");
+    margin-top: -30px;
+    margin-right: -30px;
+    margin-left: -30px;
+    height: 700px;
+    background-image: url("branch.jpg");
     background-size: cover;
 }
 
 #formTwo {
-    background-image: url("tree.jpg");
+    margin: -35px -30px -30px;
+    height: 700px;
+    background-image: url("flowers.jpg");
     background-size: cover;
 }
 
@@ -59,6 +65,6 @@ i {
 }
 
 #scrollButton {
-    margin-top: 470px;
+    margin-top: 490px;
     border-radius: 50%;
 }

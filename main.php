@@ -6,7 +6,7 @@
     }
     else{
         //$namePlaceholder = " Hayden";
-        $namePlaceholder = $_SESSION['username'];
+        $namePlaceholder = $_SESSION['username'] . "!";
     }
 ?>
 <!DOCTYPE html>
@@ -26,45 +26,52 @@
             <div class="container-fluid">
                 <div class="col"></div>
                 <div class="col text-center headings">
-                    <h1 class="display-2">Welcome <strong><?php echo $namePlaceholder; ?></strong>!</h1>
+                    <h1 class="display-2">Welcome <strong><?php echo $namePlaceholder; ?></strong></h1>
                     <br>
                     <h2>What would you like to cook today?</h2>
                 </div>
                 <div class="col text-center">
                     <button type="button" class="btn btn-light" id="scrollButton">
-                        <a href="#forms"><i class="fas fa-angle-down fa-7x"></i></a>
+                        <a href="#forms"><i class="fas fa-angle-down fa-5x"></i></a>
                     </button>
                 </div>
             </div>
         </div>
         <div class="search" id="forms">
-            <div class="col"></div>
-            <div class="col">
-                <form name="searchBar" class="formSearch" action="get_by_ingredient.php">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search for recipes by ingredients" name="ingredient_input" id="ingredients">
-                        <span class="input-group-btn">
-                            <input type="button" class="btn btn-primary"><a href="results.php">Submit</a></input>
-                        </span>
-                    </div>
-                    <small>Please enter ingredients separated by commas.</small>
-                </form>
-                <hr>
-                <form name="fr" class="formSearch" action="results.php" method=‘POST’>
-                    <div class="input-group">
-                        <input class="form-control" type="search" placeholder="Search for recipes" name="input-search" id="input-search" value="">
+            <div class="jumbotron jumbotron-fluid" id="formOne">
+                <div class="container-fluid">
+                    <form name="searchBar" class="formSearch" action="results.php">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Search for recipes by ingredients" name="ingredient_input" id="ingredients">
+                                <?php
+                                    if(isset($_REQUEST["ingredient_input"])){
+                                        $ingredient_input = $_REQUEST["ingredient_input"];
+                                    }
+                                ?>
+                                <input type="hidden" value="<?php echo $ingredient_input ?>">
+                                <span><input type="submit"></span>
+                         </div>
+                         <small>Please enter ingredients separated by commas.</small>
+                    </form>
+                </div>
+            </div>
+            <div class="jumbotron jumbotron-fluid" id="formTwo">
+                <div class="container-fluid">
+                    <form name="searchBar" class="formSearch" action="results.php" method=‘POST’>
+                        <div class="input-group">
+                            <input class="form-control" type="search" placeholder="Search for recipes" name="input-search" id="input-search" value="">
                             <?php
-                            if(isset($_REQUEST["input-search"])) {
-                                $recipe_input = $_REQUEST["input-search"];
-                            }
+                                if(isset($_REQUEST["input-search"])){
+                                    $recipe_input = $_REQUEST["input-search"];
+                                }
                             ?>
                             <input type="hidden" value="<?php echo $recipe_input ?>">
                             <span><input type="submit"></span>
+                        </div>
+                    </form>
+                </div>
 
-                    </div>
-                </form>
             </div>
-            <div class="col"></div>
         </div>
     </div>
 

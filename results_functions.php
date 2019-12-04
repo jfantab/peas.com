@@ -86,7 +86,7 @@
                             <span align="right"><b>Likes: </b><?php echo $recipes[$x]['likes']; ?></span>
                         </p>
                         <div class="collapse" id="recipe<?php echo $x; ?>">
-                            <b>Ingredients: </b> <br>
+                            <b>Ingredients: </b>
                                 <?php
                                     $sql = "SELECT ingredient_amt from recipe_ingredients where recipe_id = $recipes[$x]['id']";
                                     $ingredient_list = mysqli_query($db, $sql);

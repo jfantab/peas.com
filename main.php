@@ -5,8 +5,7 @@
         $namePlaceholder = "";
     }
     else{
-        //$namePlaceholder = " Hayden";
-        $namePlaceholder = $_SESSION['username'];
+        $namePlaceholder = $_SESSION['username'] . "!";
     }
 ?>
 <!DOCTYPE html>

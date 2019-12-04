@@ -13,16 +13,13 @@ or die ('Could not connect to the database server' . mysqli_connect_error());
 ######################## CONNECT SEARCH BUTTON TO USER_INPUT ########################
 session_start();
 /*Right now this is just a constant variable but we will connect this to a submit button*/
-if(isset($_POST['recipe_input']){
-    $user_input = $_POST['recipe_input'];
-    include 'clean_string_recipe.php';
-}
+#$user_input = "grandma's%20cookies";
+
 
 ######################## CONSTRUCT API HTTP REQUEST #################################
 /*This is the URL that will be in the cURL request function*/
 $baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=";
 $bool_instructions = "&offset=0&instructionsRequired=true&query=";
-$number_of_queries = 2;
 $baseURL .= $number_of_queries;
 $baseURL .= $bool_instructions;
 $baseURL .= $user_input;
@@ -97,30 +94,50 @@ for($i = 0; $i <= sizeof($recipes)-1; $i++){
 	#$json_string = file_get_contents('recipe_information.json');
 	#$json_array = json_decode($json_string, true);
 	
-	$recipe_id = $json_array['id'];
-	#echo $recipe_id;
-	#echo "<br><br>";
+		$recipe_id = $json_array['id'];
+	echo $recipe_id;
+	echo "<br><br>";
 	
 	$recipe_name = $json_array['title'];
-	#echo $recipe_name;
-	#echo "<br><br>";
+	echo $recipe_name;
+	echo "<br><br>";
 	
 	$recipe_likes = $json_array['aggregateLikes'];
-	#echo $recipe_likes;
-	#echo "<br><br>";
+	echo $recipe_likes;
+	echo "<br><br>";
 	
 	$readyInMinutes = $json_array['readyInMinutes'];
-	#echo $readyInMinutes;
-	#echo "<br><br>";
+	echo $readyInMinutes;
+	echo "<br><br>";
+	
+	$recipe_serving = $json_array['servings'];
+	echo $recipe_serving;
+	echo "<br><br>";
 	
 	$recipe_image = $json_array['image'];
-	#echo $recipe_image;
-	#echo "<br><br>";
+	echo $recipe_image;
+	echo "<br><br>";
 	
 	$recipe_instruct = $json_array['instructions'];
-	#echo $recipe_instruct;
-	#echo "<br><br>";
-	
+	echo $recipe_instruct;
+	echo "<br><br>";
+
+	$recipe_vegan = $json_array['vegan'];
+	echo $recipe_vegan;
+	echo "<br><br>";
+
+	$recipe_dairy = $json_array['dairyFree'];
+	echo $recipe_dairy;
+	echo "<br><br>";
+
+	$recipe_gluten = $json_array['glutenFree'];
+	echo $recipe_gluten;
+	echo "<br><br>";
+
+	$recipe_fodmap = $json_array['lowFodmap'];
+	echo $recipe_fodmap;
+	echo "<br><br>";
+
 	$recipe_ingredients_ids = [];
 	$recipe_ingredients_names = [];
 	$recipe_ingredients_amount = [];
@@ -130,24 +147,12 @@ for($i = 0; $i <= sizeof($recipes)-1; $i++){
 		$recipe_ingredients_amount[$x] = $json_array['extendedIngredients'][$x]['originalString'];
 	}
 	
-	for ($x = 0; $x <= sizeof($json_array['extendedIngredients'])-1; $x++) {
-		#echo $recipe_ingredients_ids[$x];
-		#echo "<br><br>";
-		#echo $recipe_ingredients_names[$x];
-		#echo "<br><br>";
-		#echo $recipe_ingredients_amount[$x];
-		#echo "<br><br>";
-	}
 ######################## UPDATE RECIPE ############################	
-	$sql = "INSERT INTO Recipe(recipe_id, recipe_name, readyInMinutes, recipe_image, recipe_instructions)
+	$sql = "INSERT INTO Recipe(recipe_id, recipe_name, readyInMinutes, recipe_serving, recipe_image, recipe_instructions, recipe_vegan, recipe_dairy, recipe_gluten, recipe_fodmap)
 		VALUES
-			('$recipe_id', '$recipe_name', '$readyInMinutes', '$recipe_image', '$recipe_instruct')";
-	
+			('$recipe_id', '$recipe_name', '$readyInMinutes', '$recipe_serving', '$recipe_image', '$recipe_instruct', '$recipe_vegan', '$recipe_dairy', '$recipe_gluten', '$recipe_fodmap')";
 	mysqli_query($db, $sql);
-	#This recipe echo is an assumption it does not check with database yet
-	echo "Recipe Inserted";
-	echo "<br><br>";
-	
+
 ######################## UPDATE INGREDIENT ########################
 	for ($x = 0; $x <= sizeof($json_array['extendedIngredients'])-1; $x++) {
 		$sql = "INSERT INTO Ingredient(ingredient_id, ingredient_name)
@@ -162,8 +167,8 @@ for($i = 0; $i <= sizeof($recipes)-1; $i++){
 				('$recipe_id','$recipe_ingredients_ids[$x]','$recipe_ingredients_amount[$x]')";
 		mysqli_query($db, $sql);		
 	}
-
 }
+
 
 
 ?>

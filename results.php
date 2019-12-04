@@ -13,8 +13,8 @@
     <!-- Create database connection-->
     <?php
         $host="localhost";
-        //$port=3306;
-        //$socket="";
+        $port=3306;
+        $socket="";
         $user="root";
         $password="root";
         $dbname="peas";
@@ -29,6 +29,9 @@
     include 'results_functions.php';
     $recipeIDs = array(282, 341, 392, 431, 474, 518, 541, 860, 760118);
     populateRecipes($recipes, $recipeIDs, $db);
+          if(isset($_REQUEST["input-search"]))
+               {$recipe_input = $_REQUEST["input-search"];}
+    echo $recipe_input;
     ?>
 
     <title>Search Results</title>

@@ -16,8 +16,7 @@
         $port=3306;
         $socket="";
         $user="root";
-        // Be sure to change the password and other settings as appropriate!
-        $password="Criticalhit1!";
+        $password="root";
         $dbname="peas";
 
         $db = new mysqli($host, $user, $password, $dbname, $port, $socket)
@@ -26,13 +25,17 @@
 
     <!-- Functions-->
     <?php
-    if(isset($_REQUEST["input-search"]))
-         {$recipe_input = $_REQUEST["input-search"];}
-    echo $recipe_input;
     $recipes = array();
     include 'results_functions.php';
     $recipeIDs = array(282, 341, 392, 431, 474, 518, 541, 860, 760118);
     populateRecipes($recipes, $recipeIDs, $db);
+          if(isset($_REQUEST["input-search"]))
+               {$recipe_input = $_REQUEST["input-search"];}
+    echo $recipe_input;
+     if(isset($_REQUEST["ingredient_input"]))
+                   {$ingredient_input = $_REQUEST["ingredient_input"];}
+        echo $ingredient_input;
+        echo $recipe_input;
     ?>
 
     <title>Search Results</title>
@@ -93,7 +96,10 @@
                         <input type="radio" name="options" id="option1" autocomplete="off"> Cook Time
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Servings
+                        <input type="radio" name="options" id="option2" autocomplete="off"> Likes
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> Total Calories
                     </label>
                 </div>
             </div>

@@ -99,7 +99,7 @@
             <br>
         </div>
 
-        <!-- Results list--->
+        <!-- Results list -->
         <?php
             displayResults($recipes, $db);
             $db->close();

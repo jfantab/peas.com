@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="bootstrap.css" rel="stylesheet">
-    <link href="home.css" rel="stylesheet">
+    <link href="home.css" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="recipe.ico" type="image/x-icon" />
     <script src="https://kit.fontawesome.com/a126e12bdc.js" crossorigin="anonymous"></script>
     <title>Home</title>
@@ -37,24 +37,24 @@
             </div>
         </div>
         <div class="search" id="forms">
-            <div class="col" id="form1">
-                <form name="searchBar" class="formSearch" action="get_by_ingredient.php">
+            <div class="col" id="formOne">
+                <form name="searchBar" class="formSearch" action="get_by_ingredient.php" method="post">
                     <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search for recipes by ingredients" name="ingredient_input" id="ingredients">
+                        <input class="form-control" type="text" placeholder="Search for recipes by ingredients" id="ingredients">
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-primary"><a href="results.php">Submit</a></button>
+                            <input type="button" class="btn btn-primary" value="ingredient_input"><a href="results.php">Submit</a></input>
                         </span>
                     </div>
                     <small>Please enter ingredients separated by commas.</small>
                 </form>
             </div>
             <hr>
-            <div class="col" id="form2">
-                <form name="searchBar" class="formSearch" action="get_by_recipe.php">
+            <div class="col" id="formTwo">
+                <form name="searchBar" class="formSearch" action="get_by_recipe.php" method="post">
                     <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search for recipes by name" name="recipe_input" id="recipes">
+                        <input class="form-control" type="text" placeholder="Search for recipes by name" id="recipes">
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-primary"><a href="results.php">Submit</a></button>
+                            <input type="button" class="btn btn-primary" value="recipe_input"><a href="results.php">Submit</a></input>
                         </span>
                     </div>
                 </form>

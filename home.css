@@ -26,7 +26,7 @@ i {
 }
 
 .formSearch {
-    margin: 15% 30%;
+    margin: 15% 25%;
 }
 
 .headings {
@@ -39,12 +39,12 @@ i {
     background-size: cover;
 }
 
-#form1 {
+#formOne {
     background-image: url("sky.jpg");
     background-size: cover;
 }
 
-#form2 {
+#formTwo {
     background-image: url("tree.jpg");
     background-size: cover;
 }

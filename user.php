@@ -87,7 +87,7 @@ session_start();
 
                                     <?php echo $row['ingredient_name'];?>
                                     <input type="hidden" name="ingredient_name" value= "<?php echo $row['ingredient_name']; ?>">
-                                    <button type="submit" name="delete" style="float:right; border:none;">&times</button>
+                                    <a style="float:right" href="delete.php?id=<?php echo $row['ingredient_name']; ?>">&times</a>
                                 </form>
                             </li>
                         <?php }
@@ -99,55 +99,50 @@ session_start();
                 </ul>
             </div>
 
+           <?php include 'user_functions.php';
+           mysqli_free_result($result);?>
 
 
-            <?php
-                $recipes = array(
-                    $testRecipe = array(
-                         "id"=>282,
-                         "image"=>'https://spoonacular.com/recipeImages/282-556x370.jpg',
-                         "servings"=>4,
-                         "likes"=>0,
-                         "prep_time"=>45,
-                         "name"=>'Roasted Salmon With Spicy Cauliflower',
-                         "instructions"=>'Preheat oven to 450 degrees. Gather garlic, anchovies (if using), and red-pepper flakes into a pile. Using a chefs knife, coarsely chop; season generously with salt. Using flat side of knife blade, mash mixture into a paste.',
-                         "dairy_free"=>TRUE,
-                         "vegan"=>FALSE,
-                         "low_fodmap"=>FALSE,
-                         "gluten_free"=>TRUE
-                     )
-                );
-                include 'results_functions.php';
-                ?>
+
 
             <div class="col-md-7">
+
                 <div id="recipe_list" class="panel list-group" style="max-height:900px; overflow-y:auto; overflow-x: hidden">
-                    <?php
-                        for ($x=0; $x<1; $x++) {
-                    ?>
+                <?php
+                    for($x = 0; $x <= sizeof($recipes)-1; $x++){
+                    	$sql = "SELECT recipe_id, recipe_name, recipe_likes, readyInMinutes, recipe_image, recipe_instructions from recipe where recipe_id = $recipes[$x]";
+
+                    	$recipe_list = mysqli_query($db, $sql);
+
+
+
+                    	while($recipe_data = mysqli_fetch_array($recipe_list)) { ?>
+
+
+
                     <a href="#recipe<?php echo $x; ?>" class="btn list-group-item list-group-item-action" data-toggle="collapse"  data-parent="#results-list">
                         <div class="row">
-                        <img src=<?php echo $recipes[$x]['image']; ?> height=150 width=150 style="padding-left:10px; padding-right:10px; padding-bottom:10px">
+                        <img src=<?php echo $recipe_data['recipe_image']; ?> height:20% width=20% style="padding-left:10px; padding-right:10px; padding-bottom:10px">
                         <span>
-                        <h4 class="list-group-item-heading"><b><?php echo $recipes[$x]['name']; ?></b></h4>
+                        <h4 class="list-group-item-heading"><b><?php echo $recipe_data['recipe_name']; ?></b></h4>
                         <br>
 
 
 
-                        <p class="list-group-item-text">Cook time: </b><?php echo $recipes[$x]['prep_time']; ?> minutes</p>
-                        <p class="list-group-item-text"><b>Likes: </b><?php echo $recipes[$x]['likes']; ?></span></p>
+                        <p class="list-group-item-text">Cook time: </b><?php echo $recipe_data['readyInMinutes']; ?> minutes</p>
+                        <p class="list-group-item-text"><b>Likes: </b><?php echo $recipe_data['recipe_likes']; ?></span></p>
                         <p class="list-group-item-text">
                             <?php
-                                if ($recipes[$x]['dairy_free']) {
+                                if ($recipe_data['recipe_dairy']) {
                                     ?><b>Dairy Free   </b><?php
                                 }
-                                if ($recipes[$x]['vegan']) {
+                                if ($recipe_data['recipe_vegan']) {
                                     ?><b>Vegan   </b><?php
                                 }
-                                if ($recipes[$x]['low_fodmap']) {
+                                if ($recipe_data['recipe_fodmap']) {
                                     ?><b>Low FODMAP   </b><?php
                                 }
-                                if ($recipes[$x]['gluten_free']) {
+                                if ($recipe_data['recipe_gluten']) {
                                     ?><b>Gluten Free   </b><?php
                                 }
                             ?>
@@ -156,17 +151,29 @@ session_start();
                         </span>
 
                         <div class="collapse" id="recipe<?php echo $x; ?>">
-                            <b>Instructions: </b><?php echo $recipes[$x]['instructions']; ?>
+
+                            <b>Ingredients: </b> <br>
+                            <?php
+                            $query = "SELECT ingredient_amt from recipe_ingredients where recipe_id = $recipes[$x]";
+
+                            $ingredient_list = mysqli_query($db, $query);
+                            while($ingredient_data = mysqli_fetch_array($ingredient_list)) {
+                                 echo $ingredient_data['ingredient_amt'];
+                                 echo "<br>";
+                                 }
+                                 ?>
+                            <br> <b>Instructions: </b> <br>
+                            <?php echo $recipe_data['recipe_instructions']; ?>
                             <div class="d-flex justify-content-end">
                                 <form action="user_functions.php" method="post">
-                                    <input type="hidden" name="recipe_name" value= "<?php $recipes[$x]['name'] ?>">
+                                    <input type="hidden" name="recipe_name" value= "<?php $recipe_data['recipe_name'] ?>">
                                     <button class="btn btn-primary" name="remove_recipe" type="button">Remove</button>
 
                                 </form>
                             </div>
                         </div>
                     </a>
-                    <?php }
+                    <?php } }
                     $db->close();?>
                 </div>
             <div class="col-md-1"> </div>

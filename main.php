@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="search" id="forms">
-            <div class="col jumbotron jumbotron-fluid" id="formOne">
+            <div class="jumbotron jumbotron-fluid" id="formOne">
                 <div class="container-fluid">
                     <form name="searchBar" class="formSearch" action="results.php">
                         <div class="input-group">
@@ -55,7 +55,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col jumbotron jumbotron-fluid" id="formTwo">
+            <div class="jumbotron jumbotron-fluid" id="formTwo">
                 <div class="container-fluid">
                     <form name="searchBar" class="formSearch" action="results.php" method=‘POST’>
                         <div class="input-group">

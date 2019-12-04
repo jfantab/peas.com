@@ -6,7 +6,7 @@
     $email    = "";
     $errors = array();
 
-    // Credentials
+    // Credentials personalize for your machine
     $host="localhost";
 //     $port=8889;
 //     $socket="";

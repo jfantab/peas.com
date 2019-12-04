@@ -5,8 +5,7 @@
         $namePlaceholder = "";
     }
     else{
-        //$namePlaceholder = " Hayden";
-        $namePlaceholder = $_SESSION['username'];
+        $namePlaceholder = $_SESSION['username'] . "!";
     }
 ?>
 <!DOCTYPE html>
@@ -26,7 +25,7 @@
             <div class="container-fluid">
                 <div class="col"></div>
                 <div class="col text-center headings">
-                    <h1 class="display-2">Welcome <strong><?php echo $namePlaceholder; ?></strong>!</h1>
+                    <h1 class="display-2">Welcome <strong><?php echo $namePlaceholder; ?></strong></h1>
                     <br>
                     <h2>What would you like to cook today?</h2>
                 </div>

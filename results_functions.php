@@ -31,20 +31,147 @@
         }
     }
 
-    function testArray($recipes) {
-        array_push($recipes, $testRecipe = array(
-            "id"=>282,
-            "image"=>'https://spoonacular.com/recipeImages/282-556x370.jpg',
-            "servings"=>4,
-            "likes"=>0,
-            "prep_time"=>45,
-            "name"=>'Roasted Salmon With Spicy Cauliflower',
-            "instructions"=>'Preheat oven to 450 degrees. Gather garlic, anchovies (if using), and red-pepper flakes into a pile. Using a chefs knife, coarsely chop; season generously with salt. Using flat side of knife blade, mash mixture into a paste.',
-            "dairy_free"=>TRUE,
-            "vegan"=>FALSE,
-            "low_fodmap"=>FALSE,
-            "gluten_free"=>TRUE
+    function getByRecipe(&$recipeIDs, $user_input, $db) {
+        include 'clean_string_recipe.php';
+        ######################## CONNECT SEARCH BUTTON TO USER_INPUT ########################
+        session_start();
+        /*Right now this is just a constant variable but we will connect this to a submit button*/
+        #$user_input = "grandma's%20cookies";
+
+
+        ######################## CONSTRUCT API HTTP REQUEST #################################
+        /*This is the URL that will be in the cURL request function*/
+        $baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=";
+        $bool_instructions = "&offset=0&instructionsRequired=true&query=";
+        $number_of_queries = 2;
+        $baseURL .= $number_of_queries;
+        $baseURL .= $bool_instructions;
+        $baseURL .= $user_input;
+
+        ######################## GET RECIPE BY HTTP REQUEST #################################
+        #Using a test JSON file for now
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+        	CURLOPT_URL => $baseURL,
+        	CURLOPT_RETURNTRANSFER => true,
+        	CURLOPT_FOLLOWLOCATION => true,
+        	CURLOPT_ENCODING => "",
+        	CURLOPT_MAXREDIRS => 10,
+        	CURLOPT_TIMEOUT => 30,
+        	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        	CURLOPT_CUSTOMREQUEST => "GET",
+        	CURLOPT_HTTPHEADER => array(
+        		"x-rapidapi-host: spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        		"x-rapidapi-key: ae97828bcdmsh8763975686b1d9cp19500fjsnd39c542737a9"
+        	),
         ));
+        $response = curl_exec($curl);
+        #echo $response;
+        #echo "<br><br>";
+        $err = curl_error($curl);
+        curl_close($curl);
+        if ($err) {
+        	echo "cURL Error #:" . $err;
+        }
+        #$json_array = json_decode($response, true);
+        #$json_string = file_get_contents('recipe_results.json');
+        $json_array = json_decode($response, true);
+        ######################## STORE RECIPE IN PHP ARRAY ##################################
+        for ($x = 0; $x <= sizeof($json_array['results'])-1; $x++)
+            $recipeIDs[$x] = $json_array['results'][$x]['id'];
+
+        ######################## ITERATE OVER RECIPE RESULTS ################################
+        for($i = 0; $i <= sizeof($recipeIDs)-1; $i++){
+        ######################## CONSTRUCT API HTTP REQUEST #################################
+        	$baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/";
+        	$get_recipe_information = "/information";
+        	$baseURL .= $recipeIDs[$i];
+        	$baseURL .= $get_recipe_information;
+        ######################## GET RECIPE INFORMATION BY HTTP REQUEST #####################
+        #Using test JSON file for now
+        	$curl = curl_init();
+        	curl_setopt_array($curl, array(
+        		CURLOPT_URL => $baseURL,
+        		CURLOPT_RETURNTRANSFER => true,
+        		CURLOPT_FOLLOWLOCATION => true,
+        		CURLOPT_ENCODING => "",
+        		CURLOPT_MAXREDIRS => 10,
+        		CURLOPT_TIMEOUT => 30,
+        		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        		CURLOPT_CUSTOMREQUEST => "GET",
+        		CURLOPT_HTTPHEADER => array(
+        			"x-rapidapi-host: spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        			"x-rapidapi-key: ae97828bcdmsh8763975686b1d9cp19500fjsnd39c542737a9"
+        		),
+        	));
+        	$response = curl_exec($curl);
+        	#echo $response;
+        	#echo "<br><br>";
+        	$err = curl_error($curl);
+        	curl_close($curl);
+        	if ($err) {
+        		echo "cURL Error #:" . $err;
+        	}
+        	$json_array = json_decode($response, true);
+        ######################## DECCODE AND EXTRACT FROM JSON ARRAY ########################
+        	#Your variables will be constant if you are using a test JSON file
+        	#$json_string = file_get_contents('recipe_information.json');
+        	#$json_array = json_decode($json_string, true);
+
+        	$recipe_id = $json_array['id'];
+
+        	$recipe_name = $json_array['title'];
+
+        	$recipe_likes = $json_array['aggregateLikes'];
+
+        	$readyInMinutes = $json_array['readyInMinutes'];
+
+        	$recipe_serving = $json_array['servings'];
+
+        	$recipe_image = $json_array['image'];
+
+        	$recipe_instruct = $json_array['instructions'];
+
+        	$recipe_vegan = $json_array['vegan'];
+
+        	$recipe_dairy = $json_array['dairyFree'];
+
+        	$recipe_gluten = $json_array['glutenFree'];
+
+        	$recipe_fodmap = $json_array['lowFodmap'];
+
+        	$recipe_ingredients_ids = [];
+        	$recipe_ingredients_names = [];
+        	$recipe_ingredients_amount = [];
+        	for ($x = 0; $x <= sizeof($json_array['extendedIngredients'])-1; $x++) {
+        		$recipe_ingredients_ids[$x] = $json_array['extendedIngredients'][$x]['id'];
+        		$recipe_ingredients_names[$x] = $json_array['extendedIngredients'][$x]['name'];
+        		$recipe_ingredients_amount[$x] = $json_array['extendedIngredients'][$x]['originalString'];
+        	}
+
+        ######################## UPDATE RECIPE ############################
+        	$sql = "INSERT INTO Test_Recipe(recipe_id, recipe_name, readyInMinutes, recipe_serving, recipe_image, recipe_instructions, recipe_vegan, recipe_dairy, recipe_gluten, recipe_fodmap)
+        		VALUES
+        			('$recipe_id', '$recipe_name', '$readyInMinutes', '$recipe_serving', '$recipe_image', '$recipe_instruct', '$recipe_vegan', '$recipe_dairy', '$recipe_gluten', '$recipe_fodmap')";
+        	if (!mysqli_query($db, $sql)) {
+        	    echo("Error! " . $mysqli_rror);
+        	}
+
+        ######################## UPDATE INGREDIENT ########################
+        	for ($x = 0; $x <= sizeof($json_array['extendedIngredients'])-1; $x++) {
+        		$sql = "INSERT INTO Test_Ingredient(ingredient_id, ingredient_name)
+        			VALUES
+        				('$recipe_ingredients_ids[$x]','$recipe_ingredients_names[$x]')";
+        		mysqli_query($db, $sql);
+        	}
+        ######################## UPDATE RECIPE_INGREDIENT #################
+        	for ($x = 0; $x <= sizeof($json_array['extendedIngredients'])-1; $x++) {
+        		$sql = "INSERT INTO Test_Recipe_Ingredients(recipe_id, ingredient_id, ingredient_amt)
+        			VALUES
+        				('$recipe_id','$recipe_ingredients_ids[$x]','$recipe_ingredients_amount[$x]')";
+        		mysqli_query($db, $sql);
+        	}
+        }
     }
 
     function resetArrays($recipes) {

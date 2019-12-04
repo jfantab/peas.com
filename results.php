@@ -31,7 +31,9 @@
     echo $recipe_input;
     $recipes = array();
     include 'results_functions.php';
-    $recipeIDs = array(282, 341, 392, 431, 474, 518, 541, 860, 760118);
+    $recipeIDs = array();
+    getByRecipe($recipeIDs, $recipe_input, $db);
+    // 282, 341, 392, 431, 474, 518, 541, 860, 760118
     populateRecipes($recipes, $recipeIDs, $db);
     ?>
 

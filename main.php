@@ -47,6 +47,7 @@
                             <button type="button" class="btn btn-primary"><a href="results.php">Submit</a></button>
                         </span>
                     </div>
+                    <small>Please enter ingredients separated by commas.</small>
                 </form>
                 <hr>
                 <form name="searchBar" class="formSearch" action="get_by_recipe.php">

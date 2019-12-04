@@ -16,10 +16,11 @@ or die ('Could not connect to the database server' . mysqli_connect_error());
 
 ######################## CONNECT SEARCH BUTTON TO USER_INPUT ########################
 /*You must have no spaces in your string!*/
+session_start();
 if(isset($_POST['ingredient_input']){
     $user_input = $_POST['ingredient_input'];
+    include 'clean_string_ingredients.php';
 }
-session_start();
 /*Right now this is just a constant variable but we will connect this to a submit button*/
 
 ######################## CONSTRUCT API HTTP REQUEST #################################
@@ -70,8 +71,6 @@ if($result = mysqli_query($db, $sql)){
 
 
 ######################## GET RECIPE BY INGREDIENT BY HTTP REQUEST ########################
-
-#We are using a test JSON file for now
 
 $curl = curl_init();
 
@@ -217,7 +216,6 @@ for($i = 0; $i <= sizeof($recipes)-1; $i++){
 		mysqli_query($db, $sql);		
 	}
 
-	sleep(1);
 }
 $db->close();
 ?>

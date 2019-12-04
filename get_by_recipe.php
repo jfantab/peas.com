@@ -15,14 +15,14 @@ session_start();
 /*Right now this is just a constant variable but we will connect this to a submit button*/
 if(isset($_POST['recipe_input']){
     $user_input = $_POST['recipe_input'];
-    include 'clean_string.php';
+    include 'clean_string_recipe.php';
 }
 
 ######################## CONSTRUCT API HTTP REQUEST #################################
 /*This is the URL that will be in the cURL request function*/
 $baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=";
 $bool_instructions = "&offset=0&instructionsRequired=true&query=";
-$number_of_queries = 5;
+$number_of_queries = 2;
 $baseURL .= $number_of_queries;
 $baseURL .= $bool_instructions;
 $baseURL .= $user_input;
@@ -162,7 +162,7 @@ for($i = 0; $i <= sizeof($recipes)-1; $i++){
 				('$recipe_id','$recipe_ingredients_ids[$x]','$recipe_ingredients_amount[$x]')";
 		mysqli_query($db, $sql);		
 	}
-	sleep(1);
+
 }
 
 

@@ -16,7 +16,7 @@
         $port=3306;
         $socket="";
         $user="root";
-        $password="root";
+        $password="Criticalhit1!";
         $dbname="peas";
 
         $db = new mysqli($host, $user, $password, $dbname, $port, $socket)
@@ -27,15 +27,17 @@
     <?php
     $recipes = array();
     include 'results_functions.php';
-    $recipeIDs = array(282, 341, 392, 431, 474, 518, 541, 860, 760118);
-    populateRecipes($recipes, $recipeIDs, $db);
-          if(isset($_REQUEST["input-search"]))
-               {$recipe_input = $_REQUEST["input-search"];}
+    $recipeIDs = array();
+    if(isset($_REQUEST["input-search"]))
+        {$recipe_input = $_REQUEST["input-search"];}
     echo $recipe_input;
-     if(isset($_REQUEST["ingredient_input"]))
-                   {$ingredient_input = $_REQUEST["ingredient_input"];}
-        echo $ingredient_input;
-        echo $recipe_input;
+    if(isset($_REQUEST["ingredient_input"]))
+        {$ingredient_input = $_REQUEST["ingredient_input"];}
+    echo $ingredient_input;
+    echo $recipe_input;
+    getByRecipe($recipeIDs, $recipe_input, $db);
+    // 282, 341, 392, 431, 474, 518, 541, 860, 760118
+    populateRecipes($recipes, $recipeIDs, $db);
     ?>
 
     <title>Search Results</title>

@@ -16,7 +16,8 @@
         $port=3306;
         $socket="";
         $user="root";
-        $password="root";
+        // Be sure to change the password and other settings as appropriate!
+        $password="Criticalhit1!";
         $dbname="peas";
 
         $db = new mysqli($host, $user, $password, $dbname, $port, $socket)
@@ -92,10 +93,7 @@
                         <input type="radio" name="options" id="option1" autocomplete="off"> Cook Time
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Likes
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> Total Calories
+                        <input type="radio" name="options" id="option2" autocomplete="off"> Servings
                     </label>
                 </div>
             </div>

@@ -5,6 +5,13 @@
             $makeQuery = mysqli_query($db, $sql);
             $currentRecipe = $makeQuery->fetch_assoc();
 
+            $sql = "SELECT ingredient_amt from test_recipe_ingredients where recipe_id = $recipeIDs[$i]";
+            $ingredient_list = mysqli_query($db, $sql);
+            $currentIngredients = array();
+            while ($row = $ingredient_list->fetch_array()) {
+                $currentIngredients[] = $row;
+            }
+
             $tempArray = array(
                 "id"=>$currentRecipe['recipe_id'],
                 "image"=>$currentRecipe['recipe_image'],
@@ -16,7 +23,8 @@
                 "dairy_free"=>$currentRecipe['recipe_dairy'],
                 "vegan"=>$currentRecipe['recipe_vegan'],
                 "low_fodmap"=>$currentRecipe['recipe_fodmap'],
-                "gluten_free"=>$currentRecipe['recipe_gluten']
+                "gluten_free"=>$currentRecipe['recipe_gluten'],
+                "ingredients"=>$currentIngredients
             );
             array_push($recipes, $tempArray);
             $recipes = array_values($recipes);
@@ -48,20 +56,48 @@
         }
     }
 
-    function removeRecipe($recipes, $recipe) {
+    function removeRecipe($recipes, $recipeIDs, $recipe) {
         for ($i = 0; $i < count($recipes); $i++) {
             if ($recipes[$i] == $recipe) {
                 unset($recipes[$i]);
                 $recipes = array_values($recipes);
+                unset($recipeIDs[$i]);
+                $recipeIDs = array_values($recipeIDs);
             }
         }
     }
 
-    function filterResults($recipes, $filter) {
-
+    function filterResults($recipes, $recipeIDs, $filter) {
+        for ($i = 0; $i < count($recipes); $i++) {
+            if ($recipes[$i][$filter] == FALSE) {
+                removeRecipe($recipes, $recipeIDs, $recipes[$i]);
+            }
+        }
     }
 
-    function sortResults($recipes, $sortBy) {
+    function compareByCookTime($recipeOne, $recipeTwo) {
+        return ($recipeOne['prep_time'] > $recipeTwo['prep_time']);
+    }
+
+    function compareByServings($recipeOne, $recipeTwo) {
+        return ($recipeOne['servings'] > $recipeTwo['servings']);
+    }
+
+    function sortByCookTime($recipes, $recipeIDs, $sortBy) {
+        usort($recipes, compareByCookTime);
+        for ($i = 0; $i < count($recipeIDs); $i++) {
+            $recipeIDs[$i] = $recipes[$i]['id'];
+        }
+    }
+
+    function sortByServings($recipes, $recipeIDs, $sortBy) {
+        usort($recipes, compareByServings);
+        for ($i = 0; $i < count($recipeIDs); $i++) {
+            $recipeIDs[$i] = $recipes[$i]['id'];
+        }
+    }
+
+    function addToMyRecipes($recipes) {
 
     }
 
@@ -88,11 +124,10 @@
                         <div class="collapse" id="recipe<?php echo $x; ?>">
                             <b>Ingredients: </b>
                                 <?php
-                                    $sql = "SELECT ingredient_amt from recipe_ingredients where recipe_id = $recipes[$x]['id']";
-                                    $ingredient_list = mysqli_query($db, $sql);
-                                    while($ingredient_data = mysqli_fetch_array($ingredient_list)) {
-                                         echo $ingredient_data['ingredient_amt'];
-                                         echo "<br>";
+                                    for ($y = 0; $y < count($recipes[$x]['ingredients']); $y++) {
+                                        for
+                                        echo $recipes[$x]['ingredients'][$y];
+                                        echo "<br>";
                                     }
                                 ?>
                             <p><b>Instructions: </b><?php echo $recipes[$x]['instructions']; ?></p>

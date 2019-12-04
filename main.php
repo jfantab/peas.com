@@ -43,14 +43,13 @@
                 <form name="searchBar" class="formSearch" action="results.php">
                     <div class="input-group">
                         <input class="form-control" type="text" placeholder="Search for recipes by ingredients" name="ingredient_input" id="ingredients">
-                                                    <?php
-                                                    if(isset($_REQUEST["ingredient_input"]))
-                                                        {$ingredient_input = $_REQUEST["ingredient_input"];}
-                                                    ?>
-                                                    <input type="hidden" value="<?php echo $ingredient_input ?>">
-                                                    <span><input type="submit"></span>
-
-
+                            <?php
+                                if(isset($_REQUEST["ingredient_input"])){
+                                    $ingredient_input = $_REQUEST["ingredient_input"];
+                                }
+                            ?>
+                            <input type="hidden" value="<?php echo $ingredient_input ?>">
+                            <span><input type="submit"></span>
                     </div>
                     <small>Please enter ingredients separated by commas.</small>
                 </form>
@@ -58,8 +57,6 @@
 
                 <form name=‘fr’ class="formSearch" action="results.php" method=‘POST’>
                     <div class="input-group">
-
-
                         <input class="form-control" type="search" placeholder="Search for recipes" name="input-search" id="input-search" value="">
                             <?php
                             if(isset($_REQUEST["input-search"]))
@@ -67,7 +64,6 @@
                             ?>
                             <input type="hidden" value="<?php echo $recipe_input ?>">
                             <span><input type="submit"></span>
-
 
                     </div>
                 </form>

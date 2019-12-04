@@ -2,27 +2,23 @@
     font-family: sans-serif;
 }
 
-a {
-    color: white;
-}
-
-a.btn {
-    border-radius: .25rem;
-    border: 1px solid transparent;
-    padding: .5rem 1rem;
-    color: black;
-}
-
-a.btn:hover {
-    border-radius: .25rem;
-}
-
 html {
     scroll-behavior: smooth;
 }
 
 i {
     color: grey;
+}
+
+input[type=submit] {
+    background-color: rgb(0, 123, 255);
+    border: 1px solid transparent;
+    padding: .5rem 1rem;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    height: 40px;
+    border-radius: .25rem;
 }
 
 .formSearch {

@@ -57,7 +57,7 @@ session_start();
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-3 input-group">
-                    <input id="search" class="form-control" type="text" name="item" placeholder="Add...">
+                    <input id="search" class="form-control" type="text" name="item" placeholder="Search...">
                                         <span class="input-group-btn">
                                               <button class="search" type="submit">+</button>
                                         </span>

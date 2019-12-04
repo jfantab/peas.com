@@ -99,8 +99,7 @@ session_start();
                 </ul>
             </div>
 
-           <?php include 'user_functions.php';
-           mysqli_free_result($result);?>
+           <?php include 'user_functions.php';?>
 
 
 

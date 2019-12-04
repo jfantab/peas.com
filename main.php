@@ -26,7 +26,7 @@
             <div class="container-fluid">
                 <div class="col"></div>
                 <div class="col text-center headings">
-                    <h1 class="display-2">Welcome<strong><?php echo $namePlaceholder; ?></strong>!</h1>
+                    <h1 class="display-2">Welcome <strong><?php echo $namePlaceholder; ?></strong>!</h1>
                     <br>
                     <h2>What would you like to cook today?</h2>
                 </div>
@@ -40,26 +40,35 @@
         <div class="search" id="forms">
             <div class="col"></div>
             <div class="col">
-                <form name="searchBar" class="formSearch" action="get_by_ingredient.php">
+                <form name="searchBar" class="formSearch" action="results.php">
                     <div class="input-group">
                         <input class="form-control" type="text" placeholder="Search for recipes by ingredients" name="ingredient_input" id="ingredients">
-                        <span class="input-group-btn">
-                            <input type="button" class="btn btn-primary"><a href="results.php">Submit</a></input>
-                        </span>
+                                                    <?php
+                                                    if(isset($_REQUEST["ingredient_input"]))
+                                                        {$ingredient_input = $_REQUEST["ingredient_input"];}
+                                                    ?>
+                                                    <input type="hidden" value="<?php echo $ingredient_input ?>">
+                                                    <span><input type="submit"></span>
+
+
                     </div>
                     <small>Please enter ingredients separated by commas.</small>
                 </form>
                 <hr>
-                <form name="fr" class="formSearch" action="results.php" method=‘POST’>
+
+                <form name=‘fr’ class="formSearch" action="results.php" method=‘POST’>
                     <div class="input-group">
+
+
                         <input class="form-control" type="search" placeholder="Search for recipes" name="input-search" id="input-search" value="">
                             <?php
-                            if(isset($_REQUEST["input-search"])) {
-                                $recipe_input = $_REQUEST["input-search"];
-                            }
+                            if(isset($_REQUEST["input-search"]))
+                                {$recipe_input = $_REQUEST["input-search"];}
                             ?>
                             <input type="hidden" value="<?php echo $recipe_input ?>">
                             <span><input type="submit"></span>
+
+
                     </div>
                 </form>
             </div>

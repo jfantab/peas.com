@@ -21,6 +21,10 @@ input[type=submit] {
     border-radius: .25rem;
 }
 
+small {
+    color: white;
+}
+
 .formSearch {
     margin: 15% 25%;
 }
@@ -35,6 +39,21 @@ input[type=submit] {
     background-size: cover;
 }
 
+#formOne {
+    margin-top: -30px;
+    height: 700px;
+    background-image: url("branch.jpg");
+    background-size: cover;
+}
+
+#formTwo {
+    margin-top: -35px;
+    margin-bottom: -30px;
+    height: 700px;
+    background-image: url("flowers.jpg");
+    background-size: cover;
+}
+
 #links {
     float: right;
 }
@@ -45,6 +64,6 @@ input[type=submit] {
 }
 
 #scrollButton {
-    margin-top: 470px;
+    margin-top: 490px;
     border-radius: 50%;
 }

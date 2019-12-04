@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    //session_start();
     $buttonText = "";
     $link = "";
      if (!isset($_SESSION['username'])) {

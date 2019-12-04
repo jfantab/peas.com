@@ -39,6 +39,16 @@ i {
     background-size: cover;
 }
 
+#form1 {
+    background-image: url("sky.jpg");
+    background-size: cover;
+}
+
+#form2 {
+    background-image: url("tree.jpg");
+    background-size: cover;
+}
+
 #links {
     float: right;
 }

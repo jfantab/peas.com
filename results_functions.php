@@ -122,15 +122,18 @@
                             <span align="right"><b>Likes: </b><?php echo $recipes[$x]['likes']; ?></span>
                         </p>
                         <div class="collapse" id="recipe<?php echo $x; ?>">
-                            <b>Ingredients: </b>
+                            <b>Ingredients: </b> <br>
                                 <?php
                                     for ($y = 0; $y < count($recipes[$x]['ingredients']); $y++) {
-                                        for
-                                        echo $recipes[$x]['ingredients'][$y];
+                                        $currentIngredient = "";
+                                        for ($z = 0; $z < count($recipes[$x]['ingredients'][$y]) - 1; $z++) {
+                                            $currentIngredient .= $recipes[$x]['ingredients'][$y][$z];
+                                        }
+                                        echo $currentIngredient;
                                         echo "<br>";
                                     }
                                 ?>
-                            <p><b>Instructions: </b><?php echo $recipes[$x]['instructions']; ?></p>
+                            <br> <p><b>Instructions: </b><?php echo $recipes[$x]['instructions']; ?></p>
                             <p class="list-group-item-text">
                                 <?php
                                     if ($recipes[$x]['dairy_free']) {

@@ -26,13 +26,13 @@
 
     <!-- Functions-->
     <?php
+    if(isset($_REQUEST["input-search"]))
+         {$recipe_input = $_REQUEST["input-search"];}
+    echo $recipe_input;
     $recipes = array();
     include 'results_functions.php';
     $recipeIDs = array(282, 341, 392, 431, 474, 518, 541, 860, 760118);
     populateRecipes($recipes, $recipeIDs, $db);
-          if(isset($_REQUEST["input-search"]))
-               {$recipe_input = $_REQUEST["input-search"];}
-    echo $recipe_input;
     ?>
 
     <title>Search Results</title>

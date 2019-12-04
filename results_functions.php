@@ -5,16 +5,6 @@
             $makeQuery = mysqli_query($db, $sql);
             $currentRecipe = $makeQuery->fetch_assoc();
 
-            $sql = "SELECT ingredient_amt from test_recipe_ingredients where recipe_id = $recipeIDs[$i]";
-            $makeQuery = mysqli_query($db, $sql);
-            $currentIngredients = $makeQuery->fetch_array(MYSQLI_NUM);
-            $ingredients = "";
-            for ($j = 0; $j < count($currentIngredients); $j++) {
-                $ingredients .= $currentIngredients[$j];
-                $ingredients .= ", ";
-            }
-            $ingredients = substr($ingredients, 0, -2);
-
             $tempArray = array(
                 "id"=>$currentRecipe['recipe_id'],
                 "image"=>$currentRecipe['recipe_image'],
@@ -26,8 +16,7 @@
                 "dairy_free"=>$currentRecipe['recipe_dairy'],
                 "vegan"=>$currentRecipe['recipe_vegan'],
                 "low_fodmap"=>$currentRecipe['recipe_fodmap'],
-                "gluten_free"=>$currentRecipe['recipe_gluten'],
-                "ingredients"=>$ingredients
+                "gluten_free"=>$currentRecipe['recipe_gluten']
             );
             array_push($recipes, $tempArray);
             $recipes = array_values($recipes);
@@ -76,7 +65,7 @@
 
     }
 
-    function displayResults($recipes) {
+    function displayResults($recipes, $db) {
         if (count($recipes) <= 0) {
             ?>
                 <div class="col text-center headings">
@@ -92,15 +81,18 @@
                 ?>
                     <a href="#recipe<?php echo $x; ?>" class="btn list-group-item list-group-item-action" data-toggle="collapse" data-parent="#results-list">
                         <h4 class="list-group-item-heading"><b><?php echo $recipes[$x]['name']; ?></b></h4>
-                        <img src=<?php echo $recipes[$x]['image']; ?> height=100 width=100>
+                        <img src=<?php echo $recipes[$x]['image']; ?> height:20% width=20% style="padding-left:10px; padding-right:10px; padding-bottom:10px">
                         <p class="list-group-item-text"><b>Cook time: </b><?php echo $recipes[$x]['prep_time']; ?> minutes
                             <span align="right"><b>Likes: </b><?php echo $recipes[$x]['likes']; ?></span>
                         </p>
                         <div class="collapse" id="recipe<?php echo $x; ?>">
-                            <b>Ingredients: </b>
+                            <b>Ingredients: </b> <br>
                                 <?php
-                                    for ($y = 0; $y < count($recipes[$x]['ingredients']); $y++) {
-                                        echo $recipes[$x]['ingredients'][$y];
+                                    $sql = "SELECT ingredient_amt from recipe_ingredients where recipe_id = $recipes[$x]['id']";
+                                    $ingredient_list = mysqli_query($db, $sql);
+                                    while($ingredient_data = mysqli_fetch_array($ingredient_list)) {
+                                         echo $ingredient_data['ingredient_amt'];
+                                         echo "<br>";
                                     }
                                 ?>
                             <p><b>Instructions: </b><?php echo $recipes[$x]['instructions']; ?></p>

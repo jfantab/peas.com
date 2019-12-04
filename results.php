@@ -101,7 +101,7 @@
 
         <!-- Results list--->
         <?php
-            displayResults($recipes);
+            displayResults($recipes, $db);
             $db->close();
         ?>
     </div>

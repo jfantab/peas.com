@@ -1,9 +1,20 @@
 <?php
-    function populateRecipes($recipes, $recipeIDs, $db) {
+    function populateRecipes(&$recipes, &$recipeIDs, $db) {
         for ($i = 0; $i < count($recipeIDs); $i++) {
-            $sql = "SELECT recipe_id, recipe_name, recipe_likes, readyinMinutes, recipe_serving, recipe_image, recipe_instructions, recipe_vegan, recipe_dairy, recipe_gluten, recipe_fodmap from recipe where recipe_id = $recipeIDs[$i]";
+            $sql = "SELECT recipe_id, recipe_name, recipe_likes, readyinMinutes, recipe_serving, recipe_image, recipe_instructions, recipe_vegan, recipe_dairy, recipe_gluten, recipe_fodmap from test_recipe where recipe_id = $recipeIDs[$i]";
             $makeQuery = mysqli_query($db, $sql);
             $currentRecipe = $makeQuery->fetch_assoc();
+
+            $sql = "SELECT ingredient_amt from test_recipe_ingredients where recipe_id = $recipeIDs[$i]";
+            $makeQuery = mysqli_query($db, $sql);
+            $currentIngredients = $makeQuery->fetch_array(MYSQLI_NUM);
+            $ingredients = "";
+            for ($j = 0; $j < count($currentIngredients); $j++) {
+                $ingredients .= $currentIngredients[$j];
+                $ingredients .= ", ";
+            }
+            $ingredients = substr($ingredients, 0, -2);
+
             $tempArray = array(
                 "id"=>$currentRecipe['recipe_id'],
                 "image"=>$currentRecipe['recipe_image'],
@@ -15,9 +26,11 @@
                 "dairy_free"=>$currentRecipe['recipe_dairy'],
                 "vegan"=>$currentRecipe['recipe_vegan'],
                 "low_fodmap"=>$currentRecipe['recipe_fodmap'],
-                "gluten_free"=>$currentRecipe['recipe_gluten']
+                "gluten_free"=>$currentRecipe['recipe_gluten'],
+                "ingredients"=>$ingredients
             );
             array_push($recipes, $tempArray);
+            $recipes = array_values($recipes);
         }
     }
 
@@ -65,7 +78,11 @@
 
     function displayResults($recipes) {
         if (count($recipes) <= 0) {
-
+            ?>
+                <div class="col text-center headings">
+                    <h3>Sorry, there were no recipes found! Try changing your search inputs or remove some filters.</h3>
+                </div>
+            <?php
         } else {
             ?>
             <div class="col"></div>
@@ -80,7 +97,13 @@
                             <span align="right"><b>Likes: </b><?php echo $recipes[$x]['likes']; ?></span>
                         </p>
                         <div class="collapse" id="recipe<?php echo $x; ?>">
-                            <b>Instructions: </b><?php echo $recipes[$x]['instructions']; ?>
+                            <b>Ingredients: </b>
+                                <?php
+                                    for ($y = 0; $y < count($recipes[$x]['ingredients']); $y++) {
+                                        echo $recipes[$x]['ingredients'][$y];
+                                    }
+                                ?>
+                            <p><b>Instructions: </b><?php echo $recipes[$x]['instructions']; ?></p>
                             <p class="list-group-item-text">
                                 <?php
                                     if ($recipes[$x]['dairy_free']) {

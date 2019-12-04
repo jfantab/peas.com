@@ -94,9 +94,6 @@
                         <input type="radio" name="options" id="option1" autocomplete="off"> Cook Time
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Likes
-                    </label>
-                    <label class="btn btn-primary">
                         <input type="radio" name="options" id="option3" autocomplete="off"> Total Calories
                     </label>
                 </div>

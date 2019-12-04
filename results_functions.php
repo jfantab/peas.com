@@ -38,7 +38,7 @@
         /*This is the URL that will be in the cURL request function*/
         $baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=";
         $bool_instructions = "&offset=0&instructionsRequired=true&query=";
-        $number_of_queries = 2;
+        $number_of_queries = 5;
         $baseURL .= $number_of_queries;
         $baseURL .= $bool_instructions;
         $baseURL .= $user_input;
@@ -111,6 +111,8 @@
         	#$json_string = file_get_contents('recipe_information.json');
         	#$json_array = json_decode($json_string, true);
         	$recipe_id = $json_array['id'];
+		echo $recipe_id;
+		echo "<br><br>";
         	$recipe_name = $json_array['title'];
         	$recipe_likes = $json_array['aggregateLikes'];
         	$readyInMinutes = $json_array['readyInMinutes'];
@@ -149,6 +151,7 @@
         				('$recipe_id','$recipe_ingredients_ids[$x]','$recipe_ingredients_amount[$x]')";
         		mysqli_query($db, $sql);
         	}
+		sleep(0.3);
         }
     }
     function resetArrays($recipes) {
@@ -213,9 +216,7 @@
                     <a href="#recipe<?php echo $x; ?>" class="btn list-group-item list-group-item-action" data-toggle="collapse" data-parent="#results-list">
                         <h4 class="list-group-item-heading"><b><?php echo $recipes[$x]['name']; ?></b></h4>
                         <img src=<?php echo $recipes[$x]['image']; ?> height:20% width=20% style="padding-left:10px; padding-right:10px; padding-bottom:10px">
-                        <p class="list-group-item-text"><b>Cook time: </b><?php echo $recipes[$x]['prep_time']; ?> minutes
-                            <span align="right"><b>Likes: </b><?php echo $recipes[$x]['likes']; ?></span>
-                        </p>
+                        <p class="list-group-item-text"><b>Cook time: </b><?php echo $recipes[$x]['prep_time']; ?> minutes</p>
                         <div class="collapse" id="recipe<?php echo $x; ?>">
                             <b>Ingredients: </b> <br>
                                 <?php

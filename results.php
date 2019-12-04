@@ -16,9 +16,8 @@
         $port=3306;
         $socket="";
         $user="root";
-        $password="Criticalhit1!";
+        $password="root";
         $dbname="peas";
-
         $db = new mysqli($host, $user, $password, $dbname, $port, $socket)
         	or die ('Could not connect to the database server' . mysqli_connect_error());
     ?>
@@ -30,11 +29,8 @@
     $recipeIDs = array();
     if(isset($_REQUEST["input-search"]))
         {$recipe_input = $_REQUEST["input-search"];}
-    echo $recipe_input;
     if(isset($_REQUEST["ingredient_input"]))
         {$ingredient_input = $_REQUEST["ingredient_input"];}
-    echo $ingredient_input;
-    echo $recipe_input;
     getByRecipe($recipeIDs, $recipe_input, $db);
     // 282, 341, 392, 431, 474, 518, 541, 860, 760118
     populateRecipes($recipes, $recipeIDs, $db);

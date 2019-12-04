@@ -5,7 +5,8 @@
         $namePlaceholder = "";
     }
     else{
-        $namePlaceholder = $_SESSION['username'] . "!";
+        //$namePlaceholder = " Hayden";
+        $namePlaceholder = $_SESSION['username'];
     }
 ?>
 <!DOCTYPE html>
@@ -13,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="bootstrap.css" rel="stylesheet">
-    <link href="home.css" rel="stylesheet" type="text/css">
+    <link href="home.css" rel="stylesheet">
     <link rel="shortcut icon" href="recipe.ico" type="image/x-icon" />
     <script src="https://kit.fontawesome.com/a126e12bdc.js" crossorigin="anonymous"></script>
     <title>Home</title>
@@ -25,7 +26,7 @@
             <div class="container-fluid">
                 <div class="col"></div>
                 <div class="col text-center headings">
-                    <h1 class="display-2">Welcome <strong><?php echo $namePlaceholder; ?></strong></h1>
+                    <h1 class="display-2">Welcome <strong><?php echo $namePlaceholder; ?></strong>!</h1>
                     <br>
                     <h2>What would you like to cook today?</h2>
                 </div>
@@ -37,28 +38,38 @@
             </div>
         </div>
         <div class="search" id="forms">
-            <div class="col" id="formOne">
-                <form name="searchBar" class="formSearch" action="get_by_ingredient.php" method="post">
+            <div class="col"></div>
+            <div class="col">
+                <form name="searchBar" class="formSearch" action="get_by_ingredient.php">
                     <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search for recipes by ingredients" id="ingredients">
+                        <input class="form-control" type="text" placeholder="Search for recipes by ingredients" name="ingredient_input" id="ingredients">
                         <span class="input-group-btn">
-                            <input type="button" class="btn btn-primary" value="ingredient_input"><a href="results.php">Submit</a></input>
+                            <button type="button" class="btn btn-primary"><a href="results.php">Submit</a></button>
                         </span>
                     </div>
                     <small>Please enter ingredients separated by commas.</small>
                 </form>
-            </div>
-            <hr>
-            <div class="col" id="formTwo">
-                <form name="searchBar" class="formSearch" action="get_by_recipe.php" method="post">
+                <hr>
+
+                <form name=‘fr’ class="formSearch" action="results.php" method=‘POST’>
                     <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search for recipes by name" id="recipes">
-                        <span class="input-group-btn">
-                            <input type="button" class="btn btn-primary" value="recipe_input"><a href="results.php">Submit</a></input>
-                        </span>
+
+
+                        <input class="form-control" type="search" placeholder="Search for recipes" name="input-search" id="input-search" value="">
+                            <?php
+                            if(isset($_REQUEST["input-search"]))
+                                {$recipe_input = $_REQUEST["input-search"];}
+                            ?>
+                            <input type="hidden" value="<?php echo $recipe_input ?>">
+                            <span><input type="submit"></span>
+
+                        <script type=‘text/javascript’>
+                        document.fr.submit();
+                        </script>
                     </div>
                 </form>
             </div>
+            <div class="col"></div>
         </div>
     </div>
 

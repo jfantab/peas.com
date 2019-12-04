@@ -13,14 +13,14 @@
     <!-- Create database connection-->
     <?php
         $host="localhost";
-        $port=3307;
+        $port=3306;
         $socket="";
         $user="root";
         $password="Criticalhit1!";
         $dbname="peas";
 
         $db = new mysqli($host, $user, $password, $dbname, $port, $socket)
-            or die ('Could not connect to the database server' . mysqli_connect_error());
+        	or die ('Could not connect to the database server' . mysqli_connect_error());
     ?>
 
     <!-- Functions-->

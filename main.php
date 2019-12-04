@@ -61,9 +61,6 @@
                             <input type="hidden" value="<?php echo $recipe_input ?>">
                             <span><input type="submit"></span>
 
-                        <script type="text/javascript">
-                            document.fr.submit();
-                        </script>
                     </div>
                 </form>
             </div>

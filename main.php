@@ -55,12 +55,13 @@
                 </form>
                 <hr>
 
-                <form name=‘fr’ class="formSearch" action="results.php" method=‘POST’>
+                <form name="searchBar" class="formSearch" action="results.php" method=‘POST’>
                     <div class="input-group">
                         <input class="form-control" type="search" placeholder="Search for recipes" name="input-search" id="input-search" value="">
                             <?php
-                            if(isset($_REQUEST["input-search"]))
-                                {$recipe_input = $_REQUEST["input-search"];}
+                                if(isset($_REQUEST["input-search"])){
+                                    $recipe_input = $_REQUEST["input-search"];
+                                }
                             ?>
                             <input type="hidden" value="<?php echo $recipe_input ?>">
                             <span><input type="submit"></span>

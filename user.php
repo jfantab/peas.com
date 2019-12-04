@@ -57,7 +57,12 @@ session_start();
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-3 input-group">
-                    <input id="search_ingredient" class="form-control" type="text" name="item" placeholder="Search...">
+                    <input id="search" class="form-control" type="text" name="item" placeholder="Add...">
+                                        <span class="input-group-btn">
+                                              <button class="search" type="submit">
+                                                 +
+                                              </button>
+                                        </span>
             </div>
             <div class="col-md-7 input-group">
                 <input id="search_recipe" type="text" class="form-control" placeholder="Search...">
@@ -77,14 +82,10 @@ session_start();
                    <?php
                         $query = "SELECT  ingredient_name FROM ingredient_cache, ingredient where ingredient.ingredient_id = ingredient_cache.ingredient_id and user_id = $user_id";
                         $result = mysqli_query($db, $query);
-
-
                    if(mysqli_num_rows($result) > 0) {
                        while($row = mysqli_fetch_array($result)){	?>
                             <li style="text-align: left; padding:10px" class="list-group-item" id="item">
-
                                 <form action="" method="post">
-
                                     <?php echo $row['ingredient_name'];?>
                                     <input type="hidden" name="ingredient_name" value= "<?php echo $row['ingredient_name']; ?>">
                                     <a style="float:right" href="delete.php?id=<?php echo $row['ingredient_name']; ?>">&times</a>
@@ -98,36 +99,20 @@ session_start();
                     ?>
                 </ul>
             </div>
-
            <?php include 'user_functions.php';?>
-
-
-
-
             <div class="col-md-7">
-
                 <div id="recipe_list" class="panel list-group" style="max-height:900px; overflow-y:auto; overflow-x: hidden">
                 <?php
                     for($x = 0; $x <= sizeof($recipes)-1; $x++){
                     	$sql = "SELECT recipe_id, recipe_name, recipe_likes, readyInMinutes, recipe_image, recipe_instructions, recipe_dairy, recipe_gluten, recipe_fodmap, recipe_vegan from recipe where recipe_id = $recipes[$x]";
-
                     	$recipe_list = mysqli_query($db, $sql);
-
-
-
                     	while($recipe_data = mysqli_fetch_array($recipe_list)) { ?>
-
-
-
                     <a href="#recipe<?php echo $x; ?>" class="btn list-group-item list-group-item-action" data-toggle="collapse"  data-parent="#results-list">
                         <div class="row">
                         <img src=<?php echo $recipe_data['recipe_image']; ?> height:20% width=20% style="padding-left:10px; padding-right:10px; padding-bottom:10px">
                         <span>
                         <h4 class="list-group-item-heading"><b><?php echo $recipe_data['recipe_name']; ?></b></h4>
                         <br>
-
-
-
                         <p class="list-group-item-text">Cook time: </b><?php echo $recipe_data['readyInMinutes']; ?> minutes</p>
                         <p class="list-group-item-text">
                             <?php
@@ -147,13 +132,10 @@ session_start();
                         </p>
                         </div>
                         </span>
-
                         <div class="collapse" id="recipe<?php echo $x; ?>">
-
                             <b>Ingredients: </b> <br>
                             <?php
                             $query = "SELECT ingredient_amt from recipe_ingredients where recipe_id = $recipes[$x]";
-
                             $ingredient_list = mysqli_query($db, $query);
                             while($ingredient_data = mysqli_fetch_array($ingredient_list)) {
                                  echo $ingredient_data['ingredient_amt'];
@@ -166,7 +148,6 @@ session_start();
                                 <form action="user_functions.php" method="post">
                                     <input type="hidden" name="recipe_name" value= "<?php $recipe_data['recipe_name'] ?>">
                                     <button class="btn btn-primary" name="remove_recipe" onclick="remove_recipe()" type="button">Remove</button>
-
                                 </form>
                             </div>
                         </div>
@@ -177,8 +158,5 @@ session_start();
             <div class="col-md-1"> </div>
             </div>
         </div>
-
-
-
 </body>
 </html>

@@ -1,17 +1,15 @@
 <?php
     function populateRecipes(&$recipes, &$recipeIDs, $db) {
         for ($i = 0; $i < count($recipeIDs); $i++) {
-            $sql = "SELECT recipe_id, recipe_name, recipe_likes, readyinMinutes, recipe_serving, recipe_image, recipe_instructions, recipe_vegan, recipe_dairy, recipe_gluten, recipe_fodmap from test_recipe where recipe_id = $recipeIDs[$i]";
+            $sql = "SELECT recipe_id, recipe_name, recipe_likes, readyinMinutes, recipe_serving, recipe_image, recipe_instructions, recipe_vegan, recipe_dairy, recipe_gluten, recipe_fodmap from recipe where recipe_id = $recipeIDs[$i]";
             $makeQuery = mysqli_query($db, $sql);
             $currentRecipe = $makeQuery->fetch_assoc();
-
-            $sql = "SELECT ingredient_amt from test_recipe_ingredients where recipe_id = $recipeIDs[$i]";
+            $sql = "SELECT ingredient_amt from recipe_ingredients where recipe_id = $recipeIDs[$i]";
             $ingredient_list = mysqli_query($db, $sql);
             $currentIngredients = array();
             while ($row = $ingredient_list->fetch_array()) {
                 $currentIngredients[] = $row;
             }
-
             $tempArray = array(
                 "id"=>$currentRecipe['recipe_id'],
                 "image"=>$currentRecipe['recipe_image'],
@@ -30,15 +28,12 @@
             $recipes = array_values($recipes);
         }
     }
-
     function getByRecipe(&$recipeIDs, $user_input, $db) {
         include 'clean_string_recipe.php';
         ######################## CONNECT SEARCH BUTTON TO USER_INPUT ########################
         session_start();
         /*Right now this is just a constant variable but we will connect this to a submit button*/
         #$user_input = "grandma's%20cookies";
-
-
         ######################## CONSTRUCT API HTTP REQUEST #################################
         /*This is the URL that will be in the cURL request function*/
         $baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=";
@@ -47,7 +42,6 @@
         $baseURL .= $number_of_queries;
         $baseURL .= $bool_instructions;
         $baseURL .= $user_input;
-
         ######################## GET RECIPE BY HTTP REQUEST #################################
         #Using a test JSON file for now
         $curl = curl_init();
@@ -79,7 +73,6 @@
         ######################## STORE RECIPE IN PHP ARRAY ##################################
         for ($x = 0; $x <= sizeof($json_array['results'])-1; $x++)
             $recipeIDs[$x] = $json_array['results'][$x]['id'];
-
         ######################## ITERATE OVER RECIPE RESULTS ################################
         for($i = 0; $i <= sizeof($recipeIDs)-1; $i++){
         ######################## CONSTRUCT API HTTP REQUEST #################################
@@ -117,29 +110,17 @@
         	#Your variables will be constant if you are using a test JSON file
         	#$json_string = file_get_contents('recipe_information.json');
         	#$json_array = json_decode($json_string, true);
-
         	$recipe_id = $json_array['id'];
-
         	$recipe_name = $json_array['title'];
-
         	$recipe_likes = $json_array['aggregateLikes'];
-
         	$readyInMinutes = $json_array['readyInMinutes'];
-
         	$recipe_serving = $json_array['servings'];
-
         	$recipe_image = $json_array['image'];
-
         	$recipe_instruct = $json_array['instructions'];
-
         	$recipe_vegan = $json_array['vegan'];
-
         	$recipe_dairy = $json_array['dairyFree'];
-
         	$recipe_gluten = $json_array['glutenFree'];
-
         	$recipe_fodmap = $json_array['lowFodmap'];
-
         	$recipe_ingredients_ids = [];
         	$recipe_ingredients_names = [];
         	$recipe_ingredients_amount = [];
@@ -148,32 +129,28 @@
         		$recipe_ingredients_names[$x] = $json_array['extendedIngredients'][$x]['name'];
         		$recipe_ingredients_amount[$x] = $json_array['extendedIngredients'][$x]['originalString'];
         	}
-
         ######################## UPDATE RECIPE ############################
-        	$sql = "INSERT INTO Test_Recipe(recipe_id, recipe_name, readyInMinutes, recipe_serving, recipe_image, recipe_instructions, recipe_vegan, recipe_dairy, recipe_gluten, recipe_fodmap)
+        	$sql = "INSERT INTO Recipe(recipe_id, recipe_name, readyInMinutes, recipe_serving, recipe_image, recipe_instructions, recipe_vegan, recipe_dairy, recipe_gluten, recipe_fodmap)
         		VALUES
         			('$recipe_id', '$recipe_name', '$readyInMinutes', '$recipe_serving', '$recipe_image', '$recipe_instruct', '$recipe_vegan', '$recipe_dairy', '$recipe_gluten', '$recipe_fodmap')";
-        	if (!mysqli_query($db, $sql)) {
-        	    echo("Error! " . $mysqli_rror);
-        	}
-
+        		mysqli_query($db, $sql);
+        	    
         ######################## UPDATE INGREDIENT ########################
         	for ($x = 0; $x <= sizeof($json_array['extendedIngredients'])-1; $x++) {
-        		$sql = "INSERT INTO Test_Ingredient(ingredient_id, ingredient_name)
+        		$sql = "INSERT INTO Ingredient(ingredient_id, ingredient_name)
         			VALUES
         				('$recipe_ingredients_ids[$x]','$recipe_ingredients_names[$x]')";
         		mysqli_query($db, $sql);
         	}
         ######################## UPDATE RECIPE_INGREDIENT #################
         	for ($x = 0; $x <= sizeof($json_array['extendedIngredients'])-1; $x++) {
-        		$sql = "INSERT INTO Test_Recipe_Ingredients(recipe_id, ingredient_id, ingredient_amt)
+        		$sql = "INSERT INTO Recipe_Ingredients(recipe_id, ingredient_id, ingredient_amt)
         			VALUES
         				('$recipe_id','$recipe_ingredients_ids[$x]','$recipe_ingredients_amount[$x]')";
         		mysqli_query($db, $sql);
         	}
         }
     }
-
     function resetArrays($recipes) {
         for ($i = 0; $i < count($recipes); $i++) {
             for ($j = 0; $j < count($recipes[$i]); $j++) {
@@ -182,7 +159,6 @@
             $recipes[$i] = array_values($recipes[$i]);
         }
     }
-
     function removeRecipe($recipes, $recipeIDs, $recipe) {
         for ($i = 0; $i < count($recipes); $i++) {
             if ($recipes[$i] == $recipe) {
@@ -193,7 +169,6 @@
             }
         }
     }
-
     function filterResults($recipes, $recipeIDs, $filter) {
         for ($i = 0; $i < count($recipes); $i++) {
             if ($recipes[$i][$filter] == FALSE) {
@@ -201,33 +176,26 @@
             }
         }
     }
-
     function compareByCookTime($recipeOne, $recipeTwo) {
         return ($recipeOne['prep_time'] > $recipeTwo['prep_time']);
     }
-
     function compareByServings($recipeOne, $recipeTwo) {
         return ($recipeOne['servings'] > $recipeTwo['servings']);
     }
-
     function sortByCookTime($recipes, $recipeIDs, $sortBy) {
         usort($recipes, compareByCookTime);
         for ($i = 0; $i < count($recipeIDs); $i++) {
             $recipeIDs[$i] = $recipes[$i]['id'];
         }
     }
-
     function sortByServings($recipes, $recipeIDs, $sortBy) {
         usort($recipes, compareByServings);
         for ($i = 0; $i < count($recipeIDs); $i++) {
             $recipeIDs[$i] = $recipes[$i]['id'];
         }
     }
-
     function addToMyRecipes($recipes) {
-
     }
-
     function displayResults($recipes, $db) {
         if (count($recipes) <= 0) {
             ?>

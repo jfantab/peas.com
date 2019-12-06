@@ -24,6 +24,13 @@
 
     <!-- Functions-->
     <?php
+    if(isset($_REQUEST["vegan"])){
+        $recipeIDs = $_REQUEST["input-search"];
+        populateRecipes($recipes, $recipeIDs, $db);
+        displayResults($recipes, $db);
+        $db->close();
+    } else {
+
     $recipes = array();
     include 'results_functions.php';
     $recipeIDs = array();
@@ -70,14 +77,16 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dietDropDown">
                         <form>
-                            <form action="results_functions.php" method="post">
+                            <form action="results.php" method="post">
                                 <div href="results.php" name="vegan" onclick="filterResults($recipes, $recipeIDs, name)" class="checkbox dropdown-item">
                                     <label><input type="checkbox"> Vegan</label>
+                                    <php
+
+                                    ?>
+                                    <input type="hidden" value="<?php echo $recipeIDs ?>">
+                                    <span><input type="submit"></span>
                                 </div>
                             </form>
-                                <div href="results.php" class="checkbox dropdown-item">
-                                    <label><input type="checkbox"> Vegan</label>
-                                </div>
                             <div class="checkbox dropdown-item">
                                 <label><input type="checkbox"> Gluten Free</label>
                             </div>
@@ -115,6 +124,7 @@
         <?php
             displayResults($recipes, $db);
             $db->close();
+            }
         ?>
     </div>
 </body>

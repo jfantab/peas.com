@@ -27,12 +27,16 @@
     $recipes = array();
     include 'results_functions.php';
     $recipeIDs = array();
-    if(isset($_REQUEST["input-search"]))
-        {$recipe_input = $_REQUEST["input-search"];}
-    if(isset($_REQUEST["ingredient_input"]))
-        {$ingredient_input = $_REQUEST["ingredient_input"];}
-    getByRecipe($recipeIDs, $recipe_input, $db);
-    getByIngredient($recipeIDs, $ingredient_input, $db);
+    if(isset($_REQUEST["input-search"])){
+        $recipe_input = $_REQUEST["input-search"];
+	getByRecipe($recipeIDs, $recipe_input, $db);
+    }
+    if(isset($_REQUEST["ingredient_input"])){
+        $ingredient_input = $_REQUEST["ingredient_input"];
+	getByIngredient($recipeIDs, $ingredient_input, $db);
+    }
+    
+    
     // 282, 341, 392, 431, 474, 518, 541, 860, 760118
     populateRecipes($recipes, $recipeIDs, $db);
     ?>
@@ -110,3 +114,4 @@
     </div>
 </body>
 </html>
+

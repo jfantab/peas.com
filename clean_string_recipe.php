@@ -1,3 +1,4 @@
+  
 <?php
 ######################## CONNECT SEARCH BUTTON TO USER_INPUT ########################
 # THIS FILE ONLY EDITS $user_input

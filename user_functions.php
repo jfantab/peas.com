@@ -1,8 +1,6 @@
 <?php
 $sql = "SELECT  recipe_id FROM recipe_cache where user_id = $user_id";
-
 $result = $db->query($sql);
-
 $recipes = [];
 $counter = 0;
 if($result = mysqli_query($db, $sql)){

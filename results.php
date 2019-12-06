@@ -70,9 +70,14 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dietDropDown">
                         <form>
-                            <div class="checkbox dropdown-item">
-                                <label><input type="checkbox"> Vegan</label>
-                            </div>
+                            <form action="results_functions.php" method="post">
+                                <div href="results.php" name="vegan" onclick="filterResults($recipes, $recipeIDs, name)" class="checkbox dropdown-item">
+                                    <label><input type="checkbox"> Vegan</label>
+                                </div>
+                            </form>
+                                <div href="results.php" class="checkbox dropdown-item">
+                                    <label><input type="checkbox"> Vegan</label>
+                                </div>
                             <div class="checkbox dropdown-item">
                                 <label><input type="checkbox"> Gluten Free</label>
                             </div>

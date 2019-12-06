@@ -2,7 +2,7 @@
 Motivation:
 The motivation for this project is to complete a group project for our CS 187 Design Managment of Software class in addition to the assigned project we felt that creating a recipe search engine would help beginning cooks find recipes to make that fit their needs. 
 Screen Shots:
-
+![Image of Main Page](https://github.com/jfantab/peas.com/blob/master/Screen%20Shot%202019-12-03%20at%205.17.22%20PM.png)
 Technology Used:
 HTML, CSS, PHP, MySQL, Bootstrap 4, Spoonacular API, cURL PHP extension
 

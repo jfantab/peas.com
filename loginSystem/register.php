@@ -7,10 +7,8 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<!--
-    <?php include 'navbar.php'; ?>
--->
-<div class="navbar navbar-expand-sm me">
+    //<?php include 'navbar.php'; ?>
+<div class="navbar navbar-expand-sm">
     <div class="container-fluid">
       <a class="navbar-brand" href="../main.php" id="logo"><h3>Peas.com</h3></a>
     </div>

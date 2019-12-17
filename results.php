@@ -34,6 +34,7 @@
     $recipes = array();
     include 'results_functions.php';
     $recipeIDs = array();
+
     if(isset($_REQUEST["input-search"])){
         $recipe_input = $_REQUEST["input-search"];
 	getByRecipe($recipeIDs, $recipe_input, $db);
@@ -42,7 +43,7 @@
         $ingredient_input = $_REQUEST["ingredient_input"];
 	getByIngredient($recipeIDs, $ingredient_input, $db);
     }
-    
+
     
     // 282, 341, 392, 431, 474, 518, 541, 860, 760118
     populateRecipes($recipes, $recipeIDs, $db);

@@ -4,6 +4,7 @@
             $sql = "SELECT recipe_id, recipe_name, recipe_likes, readyInMinutes, recipe_serving, recipe_image, recipe_instructions, recipe_vegan, recipe_dairy, recipe_gluten, recipe_fodmap FROM Recipe WHERE recipe_id = $recipeIDs[$i]";
             $makeQuery = mysqli_query($db, $sql);
             $currentRecipe = mysqli_fetch_assoc($makeQuery);
+            //echo $currentRecipe;
             $sql = "SELECT ingredient_amt from recipe_ingredients where recipe_id = $recipeIDs[$i]";
             $ingredient_list = mysqli_query($db, $sql);
             $currentIngredients = array();
@@ -116,10 +117,18 @@
         	$recipe_serving = $json_array['servings'];
         	$recipe_image = $json_array['image'];
         	$recipe_instruct = $json_array['instructions'];
+
+        	$recipe_instruct = mysqli_real_escape_string($db, $recipe_instruct);
+
         	$recipe_vegan = $json_array['vegan'];
+        	$recipe_vegan = $recipe_vegan == '' ? '0' : '1';
         	$recipe_dairy = $json_array['dairyFree'];
+        	$recipe_dairy = $recipe_dairy == '' ? '0' : '1';
         	$recipe_gluten = $json_array['glutenFree'];
+        	$recipe_gluten = $recipe_gluten == '' ? '0' : '1';
         	$recipe_fodmap = $json_array['lowFodmap'];
+        	$recipe_fodmap = $recipe_fodmap == '' ? '0' : '1';
+
         	$recipe_ingredients_ids = [];
         	$recipe_ingredients_names = [];
         	$recipe_ingredients_amount = [];
@@ -242,10 +251,18 @@
             $recipe_serving = $json_array['servings'];
             $recipe_image = $json_array['image'];
             $recipe_instruct = $json_array['instructions'];
-            $recipe_vegan = $json_array['vegan'];
-            $recipe_dairy = $json_array['dairyFree'];
-            $recipe_gluten = $json_array['glutenFree'];
-            $recipe_fodmap = $json_array['lowFodmap'];
+
+        	$recipe_instruct = mysqli_real_escape_string($db, $recipe_instruct);
+
+        	$recipe_vegan = $json_array['vegan'];
+        	$recipe_vegan = $recipe_vegan == '' ? '0' : '1';
+        	$recipe_dairy = $json_array['dairyFree'];
+        	$recipe_dairy = $recipe_dairy == '' ? '0' : '1';
+        	$recipe_gluten = $json_array['glutenFree'];
+        	$recipe_gluten = $recipe_gluten == '' ? '0' : '1';
+        	$recipe_fodmap = $json_array['lowFodmap'];
+        	$recipe_fodmap = $recipe_fodmap == '' ? '0' : '1';
+
             $recipe_ingredients_ids = [];
             $recipe_ingredients_names = [];
             $recipe_ingredients_amount = [];
